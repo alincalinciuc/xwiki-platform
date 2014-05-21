@@ -54,7 +54,8 @@ public class AuthSimpleHttpClient extends NoAuthSimpleHttpClient
     protected <T> T sendRequest(HttpRequestBase request, ResponseHandler<T> handler) throws IOException
     {
         try {
-            componentManager.lookup(Authenticator.class, configuration.getAuthenticatorHint()).authenticate(request);
+            componentManager.<Authenticator>getInstance(
+                Authenticator.class, configuration.getAuthenticatorHint()).authenticate(request);
         } catch (ComponentLookupException e) {
             throw new RuntimeException("Failed to authenticate the request.", e);
         }
