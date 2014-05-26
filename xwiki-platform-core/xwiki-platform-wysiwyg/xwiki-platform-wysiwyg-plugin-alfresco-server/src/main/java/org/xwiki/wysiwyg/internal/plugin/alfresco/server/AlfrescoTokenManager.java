@@ -27,12 +27,12 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
-import org.xwiki.component.manager.ComponentManager;
 import org.xwiki.context.Execution;
 import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.XWikiException;
 import com.xpn.xwiki.store.XWikiHibernateBaseStore;
 import com.xpn.xwiki.store.XWikiStoreInterface;
+import org.xwiki.context.ExecutionContext;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManagerInterface;
 /**
@@ -52,16 +52,10 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
     @Inject
     private Logger logger;
     /**
-     * The component manager.
-     */
-    @Inject
-    private ComponentManager componentManager;
-    /**
      * @param xuser the user on xwiki
      * @param atiket the tiket on alfresco
      */
     public void setTicket(String xuser, String atiket) {
-        this.logger.debug(componentManager.toString());
         this.logger.debug(execution.toString());
         XWikiContext context = getXWikiContext();
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
@@ -116,14 +110,7 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
         return null;
     }
     private XWikiContext getXWikiContext() {
-        Execution cexecution;
-        XWikiContext xwikiContext;
-        try {
-            cexecution = componentManager.getInstance(Execution.class);
-            xwikiContext = (XWikiContext) cexecution.getContext().getProperty("xwikicontext");
-            return xwikiContext;
-        } catch (Exception e) {
-            throw new RuntimeException("Unable to get XWiki context", e);
-        }
+        ExecutionContext context = this.execution.getContext();
+        return (XWikiContext) context.getProperty(XWikiContext.EXECUTIONCONTEXT_KEY);
     }
 }
