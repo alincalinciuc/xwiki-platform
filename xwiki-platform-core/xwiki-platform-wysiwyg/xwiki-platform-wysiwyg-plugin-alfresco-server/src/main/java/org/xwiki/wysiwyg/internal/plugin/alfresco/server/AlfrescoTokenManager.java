@@ -27,6 +27,7 @@ import javax.inject.Singleton;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.context.Execution;
@@ -48,6 +49,9 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface{
 
     @Inject
     private Execution execution;
+
+    @Inject
+    private Logger logger;
 
     public void setTicket(String _user,String _tiket){
         XWikiContext context = getXWikiContext();
@@ -91,11 +95,11 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface{
                             @Override
                             public AlfrescoTiket doInHibernate(Session session) throws HibernateException
                             {
-                                return (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add( Restrictions.eq("user", usr) ).uniqueResult();
+                                return (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add(Restrictions.eq("user", usr) ).uniqueResult();
                             }
                         });
                 return alfToken;
-            }catch (XWikiException e) {
+            }catch (Exception e) {
                 this.logger.warn("Failed to get user-token to database. Reason: [{}]",
                                 ExceptionUtils.getRootCauseMessage(e));
             }
