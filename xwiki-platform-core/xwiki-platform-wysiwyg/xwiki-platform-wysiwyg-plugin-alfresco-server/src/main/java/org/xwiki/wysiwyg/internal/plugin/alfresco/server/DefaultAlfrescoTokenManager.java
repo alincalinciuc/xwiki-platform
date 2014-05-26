@@ -21,6 +21,8 @@ package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.inject.Singleton;
+
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -28,13 +30,14 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.context.Execution;
+import org.xwiki.context.ExecutionContext;
+
 import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.XWikiException;
 import com.xpn.xwiki.store.XWikiHibernateBaseStore;
 import com.xpn.xwiki.store.XWikiStoreInterface;
-import org.xwiki.context.ExecutionContext;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManagerInterface;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
 /**
  * Allow initializing and retrieving the tikets for alfresco autentication.
  *
@@ -42,7 +45,9 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManagerInterface;
  * @since 5.2M2
  */
 @Component
-public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
+@Named("alfrescoticket")
+@Singleton
+public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
 {
     @Inject
     @Named("hibernate")
@@ -56,7 +61,6 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
      * @param atiket the tiket on alfresco
      */
     public void setTicket(String xuser, String atiket) {
-        this.logger.debug(execution.toString());
         XWikiContext context = getXWikiContext();
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
         String originalDatabase = context.getDatabase();

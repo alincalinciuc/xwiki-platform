@@ -80,6 +80,12 @@ public class TicketAuthenticator implements Authenticator
      */
     @Inject
     private AlfrescoConfiguration configuration;
+    /**
+     * The component that controls the Alfresco access configuration.
+     */
+    @Inject
+    @Named("alfrescoticket")
+    private DefaultAlfrescoTokenManager ticketManager;
 
     /**
      * The component used to request the authentication ticket.
@@ -122,7 +128,6 @@ public class TicketAuthenticator implements Authenticator
      */
     private String getAuthenticationTicket()
     {
-        AlfrescoTokenManager ticketManager = new AlfrescoTokenManager();
         try {
             String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
             JSONObject content = new JSONObject();

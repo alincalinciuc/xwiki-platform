@@ -30,7 +30,7 @@ import org.xwiki.stability.Unstable;
  */
 @Role
 @Unstable
-public interface AlfrescoTokenManagerInterface
+public interface AlfrescoTokenManager
 {
     /**
      * @param xuser the user on xwiki
