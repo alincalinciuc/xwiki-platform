@@ -21,7 +21,6 @@ package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Singleton;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -43,7 +42,6 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManagerInterface;
  * @since 5.2M2
  */
 @Component
-@Singleton
 public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
 {
     @Inject
@@ -112,6 +110,6 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
     }
     private XWikiContext getXWikiContext() {
         ExecutionContext context = this.execution.getContext();
-        return (XWikiContext) context.getProperty(XWikiContext.EXECUTIONCONTEXT_KEY);
+        return (XWikiContext) context.getProperty("xwikicontext");
     }
 }
