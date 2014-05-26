@@ -45,7 +45,6 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
  * @since 5.2M2
  */
 @Component
-@Named("alfrescoticket")
 @Singleton
 public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
 {
