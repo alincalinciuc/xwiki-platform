@@ -27,6 +27,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
+import org.xwiki.component.manager.ComponentManager;
 import org.xwiki.context.Execution;
 import org.xwiki.context.ExecutionContext;
 import com.xpn.xwiki.XWikiContext;
@@ -51,6 +52,11 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
     private Execution execution;
     @Inject
     private Logger logger;
+    /**
+     * The component manager.
+     */
+    @Inject
+    private ComponentManager componentManager;
     /**
      * @param xuser the user on xwiki
      * @param atiket the tiket on alfresco
@@ -109,7 +115,14 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
         return null;
     }
     private XWikiContext getXWikiContext() {
-        ExecutionContext context = execution.getContext();
-        return (XWikiContext) context.getProperty("xwikicontext");
+        Execution cexecution;
+        XWikiContext xwikiContext;
+        try {
+            cexecution = componentManager.getInstance(Execution.class);
+            xwikiContext = (XWikiContext) cexecution.getContext().getProperty("xwikicontext");
+            return xwikiContext;
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to get XWiki context", e);
+        }
     }
 }
