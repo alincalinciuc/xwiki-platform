@@ -40,6 +40,7 @@ import org.xwiki.container.servlet.ServletRequest;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
+import org.xwiki.wysiwyg.internal.plugin.alfresco.server.AlfrescoTokenManager;
 import org.xwiki.wysiwyg.plugin.alfresco.server.Authenticator;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
@@ -122,12 +123,13 @@ public class TicketAuthenticator implements Authenticator
      */
     private String getAuthenticationTicket()
     {
+        AlfrescoTokenManager ticketManager = new AlfrescoTokenManager();
         try {
             String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
             JSONObject content = new JSONObject();
             content.put("username", configuration.getUserName());
             content.put("password", configuration.getPassword());
-            return httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
+            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
                 new ResponseHandler<String>()
                 {
                     public String read(InputStream content)
@@ -135,6 +137,9 @@ public class TicketAuthenticator implements Authenticator
                         return responseParser.parseAuthTicket(content);
                     }
                 });
+
+            ticketManager.setTicket("mitica",myTicket);
+            return  myTicket;
         } catch (Exception e) {
             throw new RuntimeException("Failed to request the authentication ticket.", e);
         }
