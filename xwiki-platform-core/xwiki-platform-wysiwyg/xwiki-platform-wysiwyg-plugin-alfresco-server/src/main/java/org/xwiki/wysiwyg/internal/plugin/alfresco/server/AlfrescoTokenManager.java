@@ -62,6 +62,8 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
      * @param atiket the tiket on alfresco
      */
     public void setTicket(String xuser, String atiket) {
+        this.logger.debug(componentManager.toString());
+        this.logger.debug(execution.toString());
         XWikiContext context = getXWikiContext();
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
         String originalDatabase = context.getDatabase();
