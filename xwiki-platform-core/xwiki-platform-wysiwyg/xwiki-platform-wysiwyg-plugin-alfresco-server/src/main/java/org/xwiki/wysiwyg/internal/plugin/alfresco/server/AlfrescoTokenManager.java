@@ -109,7 +109,7 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
         return null;
     }
     private XWikiContext getXWikiContext() {
-        ExecutionContext context = this.execution.getContext();
+        ExecutionContext context = execution.getContext();
         return (XWikiContext) context.getProperty("xwikicontext");
     }
 }
