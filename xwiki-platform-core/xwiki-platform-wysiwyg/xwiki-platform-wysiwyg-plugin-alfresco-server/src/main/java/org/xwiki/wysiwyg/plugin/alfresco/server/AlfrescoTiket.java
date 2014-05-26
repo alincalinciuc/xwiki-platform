@@ -20,52 +20,63 @@
 
 package org.xwiki.wysiwyg.plugin.alfresco.server;
 import org.xwiki.stability.Unstable;
-
+/**
+ * Allow initializing and retrieving the tikets for alfresco autentication.
+ *
+ * @version $Id$
+ * @since 5.2M2
+ */
 @Unstable
 public class AlfrescoTiket
 {
     private String user;
-
     private String tiket;
-
-    public AlfrescoTiket()
-    {
+    /**
+     * Default constructor. It is need for Hibernate.
+     */
+    public AlfrescoTiket() { }
+    /**
+     * @param xuser the user on xwiki
+     * @param atiket the tiket on alfresco
+     */
+    public AlfrescoTiket(String xuser, String atiket) {
+        this.user = xuser;
+        this.tiket = atiket;
     }
-
-    public AlfrescoTiket(String _user,String _tiket){
-        this.user = _user;
-        this.tiket = _tiket;
-    }
-
-
+    /**
+     * @return the tiket for alfresco
+     */
     public String getTiket() {
         return tiket;
     }
-
+    /**
+     * @param tiket the tiket for alfresco as a String
+     */
     public void setTiket(String tiket) {
         this.tiket = tiket;
     }
-
+    /**
+     * @return the xwiki user
+     */
     public String getUser() {
         return user;
     }
-
+    /**
+     * @param user the xwiki user
+     */
     public void setUser(String user) {
         this.user = user;
     }
-
     @Override
     public String toString()
     {
         return this.tiket.toString();
     }
-
     @Override
     public int hashCode()
     {
         return this.tiket.hashCode();
     }
-
     @Override public boolean equals(Object o)
     {
         return this.equals(o);

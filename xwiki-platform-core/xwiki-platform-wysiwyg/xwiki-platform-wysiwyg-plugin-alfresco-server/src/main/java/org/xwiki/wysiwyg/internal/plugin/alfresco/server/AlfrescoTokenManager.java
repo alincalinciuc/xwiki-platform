@@ -19,11 +19,9 @@
  */
 package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
 
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
-
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -38,29 +36,33 @@ import com.xpn.xwiki.store.XWikiHibernateBaseStore;
 import com.xpn.xwiki.store.XWikiStoreInterface;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManagerInterface;
-
+/**
+ * Allow initializing and retrieving the tikets for alfresco autentication.
+ *
+ * @version $Id$
+ * @since 5.2M2
+ */
 @Component
 @Singleton
-public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface{
-
+public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface
+{
     @Inject
     @Named("hibernate")
     private XWikiStoreInterface hibernateStore;
-
     @Inject
     private Execution execution;
-
     @Inject
     private Logger logger;
-
-    public void setTicket(String _user,String _tiket){
+    /**
+     * @param xuser the user on xwiki
+     * @param atiket the tiket on alfresco
+     */
+    public void setTicket(String xuser, String atiket) {
         XWikiContext context = getXWikiContext();
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
-
         String originalDatabase = context.getDatabase();
         context.setDatabase(context.getMainXWiki());
-
-        final AlfrescoTiket newTiket = new AlfrescoTiket(_user,_tiket);
+        final AlfrescoTiket newTiket = new AlfrescoTiket(xuser, atiket);
         try {
             store.executeWrite(context, new XWikiHibernateBaseStore.HibernateCallback<Object>()
             {
@@ -74,43 +76,41 @@ public class AlfrescoTokenManager implements AlfrescoTokenManagerInterface{
         } catch (XWikiException e) {
             this.logger.warn("Failed to save user-token to database. Reason: [{}]",
                     ExceptionUtils.getRootCauseMessage(e));
-        }finally {
+        } finally {
             context.setDatabase(originalDatabase);
         }
     }
-
-    public AlfrescoTiket getTicket(String user)
-    {
-            final String usr = user;
-            XWikiContext context = getXWikiContext();
-            XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
-
-            String originalDatabase = context.getDatabase();
-            context.setDatabase(context.getMainXWiki());
-
-            try {
-                AlfrescoTiket alfToken = store.failSafeExecuteRead(context,
-                        new XWikiHibernateBaseStore.HibernateCallback<AlfrescoTiket>()
-                        {
-                            @Override
-                            public AlfrescoTiket doInHibernate(Session session) throws HibernateException
-                            {
-                                return (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add(Restrictions.eq("user", usr) ).uniqueResult();
-                            }
-                        });
-                return alfToken;
-            }catch (Exception e) {
-                this.logger.warn("Failed to get user-token to database. Reason: [{}]",
-                                ExceptionUtils.getRootCauseMessage(e));
-            }
-            finally {
-                context.setDatabase(originalDatabase);
-            }
+    /**
+     * @param user the user on xwiki
+     * @return alfresco tiket
+     *
+     */
+    public AlfrescoTiket getTicket(String user) {
+        final String usr = user;
+        XWikiContext context = getXWikiContext();
+        XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
+        String originalDatabase = context.getDatabase();
+        context.setDatabase(context.getMainXWiki());
+        try {
+            AlfrescoTiket alfToken = store.failSafeExecuteRead(context,
+                    new XWikiHibernateBaseStore.HibernateCallback<AlfrescoTiket>()
+                    {
+                        @Override
+                        public AlfrescoTiket doInHibernate(Session session) throws HibernateException {
+                            return (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add(
+                                    Restrictions.eq("user", usr)).uniqueResult();
+                        }
+                    });
+            return alfToken;
+        } catch (Exception e) {
+            this.logger.warn("Failed to get user-token to database. Reason: [{}]",
+                            ExceptionUtils.getRootCauseMessage(e));
+        } finally {
+            context.setDatabase(originalDatabase);
+        }
         return null;
     }
-
-    private XWikiContext getXWikiContext()
-    {
+    private XWikiContext getXWikiContext() {
         ExecutionContext context = this.execution.getContext();
         return (XWikiContext) context.getProperty(XWikiContext.EXECUTIONCONTEXT_KEY);
     }

@@ -22,13 +22,25 @@ package org.xwiki.wysiwyg.plugin.alfresco.server;
 
 import org.xwiki.component.annotation.Role;
 import org.xwiki.stability.Unstable;
-
+/**
+ * Allow initializing and retrieving the tikets for alfresco autentication.
+ *
+ * @version $Id$
+ * @since 5.2M2
+ */
 @Role
 @Unstable
-public interface AlfrescoTokenManagerInterface {
-
-    void setTicket(String _user,String _tiket);
-
+public interface AlfrescoTokenManagerInterface
+{
+    /**
+     * @param xuser the user on xwiki
+     * @param atiket the tiket on alfresco
+     */
+    void setTicket(String xuser, String atiket);
+    /**
+     * @param user the user on xwiki
+     * @return alfresco tiket
+     *
+     */
     AlfrescoTiket getTicket(String user);
-
 }
