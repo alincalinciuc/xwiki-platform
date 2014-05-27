@@ -141,7 +141,6 @@ public class TicketAuthenticator implements Authenticator
                         return responseParser.parseAuthTicket(content);
                     }
                 });
-
             ticketManager.setTicket("mitica", myTicket);
             return myTicket;
         } catch (Exception e) {

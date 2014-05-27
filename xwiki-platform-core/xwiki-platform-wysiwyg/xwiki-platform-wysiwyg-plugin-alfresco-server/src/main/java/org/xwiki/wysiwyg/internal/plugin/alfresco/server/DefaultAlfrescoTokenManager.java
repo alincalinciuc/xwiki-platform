@@ -58,8 +58,11 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
      * @param xuser the user on xwiki
      * @param atiket the tiket on alfresco
      */
+    @Override
     public void setTicket(String xuser, String atiket) {
+        this.logger.debug("ANDREI:" + xuser.toString());
         XWikiContext context = getXWikiContext();
+        this.logger.debug("ANDREI1:" + context.toString());
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
         String originalDatabase = context.getDatabase();
         context.setDatabase(context.getMainXWiki());
@@ -86,6 +89,7 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
      * @return alfresco tiket
      *
      */
+    @Override
     public AlfrescoTiket getTicket(String user) {
         final String usr = user;
         XWikiContext context = getXWikiContext();

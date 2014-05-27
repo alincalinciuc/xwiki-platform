@@ -25,8 +25,8 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping auto-import="true">
 
-    <class name="org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket" table="xwikiTiket">
-        <id name="tiket" type="string" length="255" unsaved-value="undefined">
+    <class name="org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket" table="xwikiTicket">
+        <id name="user" type="string" length="255" unsaved-value="undefined">
             <column name="XWI_ALF_USER" not-null="true" />
             <column name="XWI_ALF_TICKET" not-null="true" />
             <generator class="assigned" />

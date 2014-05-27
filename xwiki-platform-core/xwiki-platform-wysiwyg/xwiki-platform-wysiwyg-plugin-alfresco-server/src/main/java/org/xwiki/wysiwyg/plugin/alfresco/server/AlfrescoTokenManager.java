@@ -20,16 +20,14 @@
 
 package org.xwiki.wysiwyg.plugin.alfresco.server;
 
-import org.xwiki.component.annotation.Role;
-import org.xwiki.stability.Unstable;
+import org.xwiki.component.annotation.ComponentRole;
 /**
  * Allow initializing and retrieving the tikets for alfresco autentication.
  *
  * @version $Id$
  * @since 5.2M2
  */
-@Role
-@Unstable
+@ComponentRole
 public interface AlfrescoTokenManager
 {
     /**
