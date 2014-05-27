@@ -26,9 +26,9 @@
 <hibernate-mapping auto-import="true">
 
     <class name="org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket" table="xwikiTicket">
-        <id name="id" type="string" length="255" unsaved-value="undefined">
+        <id name="id" type="long">
             <column name="XWI_ALF_ID" not-null="true" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="user" type="string" column="XWI_ALF_USER" length="255"/>
         <property name="tiket" type="string" column="XWI_ALF_TIKET" length="255"/>
