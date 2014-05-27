@@ -39,4 +39,10 @@ public interface AlfrescoTokenManager
      *
      */
     AlfrescoTiket getTicket();
+    /**
+     * @return true if alfresco tiket is still valid
+     * @param ticket the tiket on alfresco
+     * 
+     */
+    Boolean validateAuthenticationTicket(String ticket);
 }

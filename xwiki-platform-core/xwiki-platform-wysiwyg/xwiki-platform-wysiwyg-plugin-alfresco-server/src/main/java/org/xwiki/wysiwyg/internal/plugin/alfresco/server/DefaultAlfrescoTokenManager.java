@@ -28,15 +28,29 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xwiki.component.annotation.Component;
 
 import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.XWikiException;
 import com.xpn.xwiki.store.XWikiHibernateBaseStore;
 import com.xpn.xwiki.store.XWikiStoreInterface;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
+import org.xwiki.xml.EntityResolver;
+
 import javax.inject.Provider;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.InputStream;
+import java.util.AbstractMap;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Allow initializing and retrieving the tikets for alfresco autentication.
  *
@@ -47,6 +61,14 @@ import javax.inject.Provider;
 @Singleton
 public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
 {
+    /**
+     * The authentication query string parameter.
+     */
+    private static final String AUTH_TICKET_PARAM = "alf_ticket";
+    /**
+     * The authentication query string parameter.
+     */
+    private static final String TRUE_PARAM = "true";
     @Inject
     @Named("hibernate")
     private XWikiStoreInterface hibernateStore;
@@ -56,8 +78,22 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
     private Logger logger;
     private String userfield = "user";
     /**
-     * @param atiket the tiket on alfresco
+     * The component that controls the Alfresco access configuration.
      */
+    @Inject
+    private AlfrescoConfiguration configuration;
+    /**
+     * The component used to resolve XML entities.
+     */
+    @Inject
+    private EntityResolver entityResolver;
+    /**
+     * The component used to request the authentication ticket.
+     */
+    @Inject
+    @Named("noauth")
+    private SimpleHttpClient httpClient;
+
     @Override
     public void setTicket(String atiket) {
         final XWikiContext context = getXWikiContext();
@@ -118,6 +154,47 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
             context.setDatabase(originalDatabase);
         }
         return null;
+    }
+    @Override
+    public Boolean validateAuthenticationTicket(String ticket)
+    {
+        try {
+            String validateURL = configuration.getServerURL() + "/alfresco/service/api/login/ticket/" + ticket;
+            List<Map.Entry<String, String>> parameters =
+                    Collections.<Map.Entry<String, String>> singletonList(
+                            new AbstractMap.SimpleEntry<String, String>(AUTH_TICKET_PARAM, ticket));
+            String myTicket = httpClient.doGet(validateURL, parameters, new SimpleHttpClient.ResponseHandler<String>()
+            {
+                public String read(InputStream content)
+                {
+                    NodeList ticket1 = parseXML(content).getElementsByTagName("ticket");
+                    if (ticket1.getLength() > 0) {
+                        return TRUE_PARAM;
+                    }
+                    return "false";
+                }
+            });
+            return myTicket.equals(TRUE_PARAM);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to validate the authentication ticket.", e);
+        }
+    }
+    /**
+     * Parses the given XML input stream.
+     *
+     * @param xml the XML stream to be parsed
+     * @return the DOM document corresponding to the XML input stream
+     */
+    private Document parseXML(InputStream xml)
+    {
+        try {
+            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+            documentBuilder.setEntityResolver(entityResolver);
+            return documentBuilder.parse(xml);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse XML response.", e);
+        }
     }
     private XWikiContext getXWikiContext() {
         return this.xcontextProvider.get();

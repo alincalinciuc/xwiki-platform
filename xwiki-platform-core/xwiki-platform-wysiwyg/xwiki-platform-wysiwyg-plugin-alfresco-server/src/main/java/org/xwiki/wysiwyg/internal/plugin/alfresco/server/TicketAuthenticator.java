@@ -23,7 +23,6 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -64,7 +63,6 @@ public class TicketAuthenticator implements Authenticator
      * The authentication query string parameter.
      */
     private static final String AUTH_TICKET_PARAM = "alf_ticket";
-
     /**
      * The session attribute used to cache the authentication ticket.
      */
@@ -111,6 +109,9 @@ public class TicketAuthenticator implements Authenticator
             //ticket = getAuthenticationTicket();
             if (dbTiket != null) {
                 ticket = dbTiket.getTiket();
+                if (!ticketManager.validateAuthenticationTicket(ticket)) {
+                    ticket = getAuthenticationTicket();
+                }
             } else {
                 ticket = getAuthenticationTicket();
             }
