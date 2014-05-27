@@ -139,6 +139,8 @@ public class TicketAuthenticator implements Authenticator
         try {
             String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
             JSONObject content = new JSONObject();
+            AuthDialog auth = new AuthDialog();
+            auth.show();
             content.put("username", configuration.getUserName());
             content.put("password", configuration.getPassword());
             String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",

@@ -17,32 +17,27 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-
-package org.xwiki.wysiwyg.plugin.alfresco.server;
-
-import org.xwiki.component.annotation.ComponentRole;
+package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
+import com.google.gwt.user.client.ui.DialogBox;
 /**
- * Allow initializing and retrieving the tikets for alfresco autentication.
+ * Pops a dialog to ask after alfresco credentials.
  *
  * @version $Id$
  * @since 5.2M2
  */
-@ComponentRole
-public interface AlfrescoTokenManager
+public class AuthDialog extends DialogBox
 {
+    private String user;
     /**
-     * @param atiket the tiket on alfresco
+     * The component used to request the credentials.
      */
-    void setTicket(String atiket);
+    public AuthDialog() {
+        setHTML("New dialog");
+    }
     /**
-     * @return alfresco tiket
-     *
+     * @return the user forom input
      */
-    AlfrescoTiket getTicket();
-    /**
-     * @return true if alfresco tiket is still valid
-     * @param ticket the tiket on alfresco
-     *
-     */
-    Boolean validateAuthenticationTicket(String ticket);
+    public String getUser() {
+        return user;
+    }
 }
