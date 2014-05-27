@@ -39,10 +39,11 @@ import org.xwiki.container.Container;
 import org.xwiki.container.servlet.ServletRequest;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.wysiwyg.plugin.alfresco.server.Authenticator;
-import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
+import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
 
 /**
@@ -106,7 +107,13 @@ public class TicketAuthenticator implements Authenticator
         HttpSession session = ((ServletRequest) container.getRequest()).getHttpServletRequest().getSession();
         String ticket = (String) session.getAttribute(AUTH_TICKET_SESSION_ATTRIBUTE);
         if (ticket == null) {
-            ticket = getAuthenticationTicket();
+            AlfrescoTiket dbTiket = ticketManager.getTicket();
+            //ticket = getAuthenticationTicket();
+            if (dbTiket != null) {
+                ticket = dbTiket.getTiket();
+            } else {
+                ticket = getAuthenticationTicket();
+            }
             session.setAttribute(AUTH_TICKET_SESSION_ATTRIBUTE, ticket);
         }
 
