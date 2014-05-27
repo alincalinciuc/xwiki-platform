@@ -21,7 +21,6 @@ package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -37,6 +36,7 @@ import com.xpn.xwiki.store.XWikiHibernateBaseStore;
 import com.xpn.xwiki.store.XWikiStoreInterface;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+import javax.inject.Provider;
 /**
  * Allow initializing and retrieving the tikets for alfresco autentication.
  *

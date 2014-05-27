@@ -38,10 +38,11 @@ import org.xwiki.component.annotation.Component;
 import org.xwiki.container.Container;
 import org.xwiki.container.servlet.ServletRequest;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.Authenticator;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
 
 /**
@@ -93,6 +94,11 @@ public class TicketAuthenticator implements Authenticator
      */
     @Inject
     private AlfrescoResponseParser responseParser;
+    /**
+     * The component used to parse the ticket response.
+     */
+    @Inject
+    private AlfrescoTokenManager ticketManager;
 
     @Override
     public void authenticate(HttpRequestBase request)
@@ -122,7 +128,6 @@ public class TicketAuthenticator implements Authenticator
      */
     private String getAuthenticationTicket()
     {
-        DefaultAlfrescoTokenManager ticketManager = new DefaultAlfrescoTokenManager();
         try {
             String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
             JSONObject content = new JSONObject();
