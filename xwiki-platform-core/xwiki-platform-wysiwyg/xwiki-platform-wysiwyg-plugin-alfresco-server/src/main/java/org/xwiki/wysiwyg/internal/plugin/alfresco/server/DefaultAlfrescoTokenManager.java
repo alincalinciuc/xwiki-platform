@@ -54,25 +54,29 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
     private Provider<XWikiContext> xcontextProvider;
     @Inject
     private Logger logger;
+    private String userfield = "user";
     /**
-     * @param xuser the user on xwiki
      * @param atiket the tiket on alfresco
      */
     @Override
-    public void setTicket(String xuser, String atiket) {
-        this.logger.debug("ANDREI:" + xuser.toString());
-        XWikiContext context = getXWikiContext();
-        this.logger.debug("ANDREI1:" + context.toString());
+    public void setTicket(String atiket) {
+        final XWikiContext context = getXWikiContext();
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
         String originalDatabase = context.getDatabase();
         context.setDatabase(context.getMainXWiki());
-        final AlfrescoTiket newTiket = new AlfrescoTiket(xuser, atiket);
+        final String usr = context.getUser();
+        final AlfrescoTiket newTiket = new AlfrescoTiket(usr, atiket);
         try {
             store.executeWrite(context, new XWikiHibernateBaseStore.HibernateCallback<Object>()
             {
                 @Override
                 public Object doInHibernate(Session session) throws HibernateException
                 {
+                    AlfrescoTiket tiket = (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add(
+                            Restrictions.eq(userfield, usr)).uniqueResult();
+                    if (tiket != null) {
+                        session.delete(tiket);
+                    }
                     session.save(newTiket);
                     return null;
                 }
@@ -85,17 +89,17 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
         }
     }
     /**
-     * @param user the user on xwiki
      * @return alfresco tiket
      *
      */
     @Override
-    public AlfrescoTiket getTicket(String user) {
-        final String usr = user;
+    public AlfrescoTiket getTicket() {
+
         XWikiContext context = getXWikiContext();
         XWikiHibernateBaseStore store = (XWikiHibernateBaseStore) this.hibernateStore;
         String originalDatabase = context.getDatabase();
         context.setDatabase(context.getMainXWiki());
+        final String usr = context.getUser();
         try {
             AlfrescoTiket alfToken = store.failSafeExecuteRead(context,
                     new XWikiHibernateBaseStore.HibernateCallback<AlfrescoTiket>()
@@ -103,7 +107,7 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
                         @Override
                         public AlfrescoTiket doInHibernate(Session session) throws HibernateException {
                             return (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add(
-                                    Restrictions.eq("user", usr)).uniqueResult();
+                                    Restrictions.eq(userfield, usr)).uniqueResult();
                         }
                     });
             return alfToken;

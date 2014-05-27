@@ -31,14 +31,12 @@ import org.xwiki.component.annotation.ComponentRole;
 public interface AlfrescoTokenManager
 {
     /**
-     * @param xuser the user on xwiki
      * @param atiket the tiket on alfresco
      */
-    void setTicket(String xuser, String atiket);
+    void setTicket(String atiket);
     /**
-     * @param user the user on xwiki
      * @return alfresco tiket
      *
      */
-    AlfrescoTiket getTicket(String user);
+    AlfrescoTiket getTicket();
 }
