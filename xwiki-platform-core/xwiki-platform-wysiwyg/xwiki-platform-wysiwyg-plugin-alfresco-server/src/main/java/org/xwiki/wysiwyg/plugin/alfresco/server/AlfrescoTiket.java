@@ -29,7 +29,7 @@ import org.xwiki.stability.Unstable;
 @Unstable
 public class AlfrescoTiket
 {
-    private String id;
+    private long id;
     private String user;
     private String tiket;
     /**
@@ -47,13 +47,13 @@ public class AlfrescoTiket
     /**
      * @return the id for alfresco
      */
-    public String getId() {
+    public long getId() {
         return id;
     }
     /**
      * @param id the tiket for alfresco as a String
      */
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
     /**
