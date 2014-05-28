@@ -17,8 +17,12 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
+package org.xwiki.wysiwyg.plugin.alfresco.server;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Widget;
+
 /**
  * Pops a dialog to ask after alfresco credentials.
  *
@@ -32,7 +36,14 @@ public class AuthDialog extends DialogBox
      * The component used to request the credentials.
      */
     public AuthDialog() {
-        setHTML("New dialog");
+        setText("Auth dialog");
+        Button ok = new Button("OK");
+        ok.addClickListener(new ClickListener() {
+            public void onClick(Widget sender) {
+                AuthDialog.this.hide();
+            }
+        });
+        setWidget(ok);
     }
     /**
      * @return the user forom input

@@ -25,7 +25,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-//import javax.servlet.http.HttpSession;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -35,7 +34,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.container.Container;
-//import org.xwiki.container.servlet.ServletRequest;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.wysiwyg.plugin.alfresco.server.Authenticator;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
@@ -43,6 +41,7 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AuthDialogManager;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
 
 /**
@@ -98,23 +97,30 @@ public class TicketAuthenticator implements Authenticator
      */
     @Inject
     private AlfrescoTokenManager ticketManager;
+    /**
+     * The component used to show dialog.
+     */
+    @Inject
+    private AuthDialogManager dialogManager;
 
     @Override
     public void authenticate(HttpRequestBase request)
     {
-        //HttpSession session = ((ServletRequest) container.getRequest()).getHttpServletRequest().getSession();
+        dialogManager.showDialog();
         String ticket = null;
-        //(String) session.getAttribute(AUTH_TICKET_SESSION_ATTRIBUTE);
+        //get ticket from DB
         AlfrescoTiket dbTiket = ticketManager.getTicket();
+        //if there is a ticket for current user,use it
         if (dbTiket != null) {
             ticket = dbTiket.getTiket();
         }
         if (ticket != null) {
             if (!ticketManager.validateAuthenticationTicket(ticket)) {
+                //if ticket is not valid on alfresco, perform authentication
                 ticket = getAuthenticationTicket();
             }
-            //session.setAttribute(AUTH_TICKET_SESSION_ATTRIBUTE, ticket);
         } else {
+            //if there is no ticket in DB, perform authentication
             ticket = getAuthenticationTicket();
         }
 
