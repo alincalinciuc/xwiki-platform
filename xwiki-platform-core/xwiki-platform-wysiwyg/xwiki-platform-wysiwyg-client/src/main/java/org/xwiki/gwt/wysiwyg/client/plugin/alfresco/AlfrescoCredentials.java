@@ -17,49 +17,52 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
+package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
-import com.google.gwt.core.client.EntryPoint;
-import org.xwiki.component.annotation.Component;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AuthDialog;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AuthDialogManager;
-
-import javax.inject.Singleton;
+import org.xwiki.gwt.wysiwyg.client.wiki.Entity;
 
 /**
- * Allow initializing and retrieving the tikets for alfresco autentication.
+ * An AlfrescoCredentials entity (e.g. a space or a document).
  *
  * @version $Id$
- * @since 5.2M2
  */
-@Component
-@Singleton
-public class DefaultAuthDialogManager implements AuthDialogManager, EntryPoint
+public class AlfrescoCredentials extends Entity
 {
-    private AuthDialog dialog;
-    @Override
-    public void showDialog() {
-        if (dialog == null) {
-            dialog = new AuthDialog();
-        }
-        dialog.show();
-    }
-
-    @Override
-    public void onModuleLoad() {
-        dialog = new AuthDialog();
-    }
+    /**
+     * The username.
+     */
+    private String username;
 
     /**
-     * @return the dialog for alfresco
+     * The password.
      */
-    public AuthDialog getDialog() {
-        return dialog;
+    private String password;
+    /**
+     * @return the username of this entity
+     */
+    public String getUsername() {
+        return username;
     }
     /**
-     * @param dialog asdasd
+     * Sets the username of this entity.
+     *
+     * @param username the new entity name
      */
-    public void setDialog(AuthDialog dialog) {
-        this.dialog = dialog;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    /**
+     * @return the password of this entity
+     */
+    public String getPassword() {
+        return password;
+    }
+    /**
+     * Sets the password of this entity.
+     *
+     * @param password the new entity name
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

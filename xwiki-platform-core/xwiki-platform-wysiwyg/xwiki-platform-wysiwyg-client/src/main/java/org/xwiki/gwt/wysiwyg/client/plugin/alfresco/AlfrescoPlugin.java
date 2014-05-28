@@ -143,7 +143,7 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
     {
         LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
         linkConfig.setType(LinkType.EXTERNAL);
-        getWizard().start(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString(), createEntityLink(linkConfig));
+        getWizard().start(AlfrescoWizardStep.CREDENTIAL_GETTER.toString(), createEntityLink(linkConfig));
     }
 
     /**

@@ -58,7 +58,7 @@ public class LinkConfigFactory
     }
 
     /**
-     * @return a new link configuration object based on the current selection in the underlying rich text area
+     * @return a new link configuration object based on the current selection in the underlying rich text area.
      */
     public LinkConfig createLinkConfig()
     {

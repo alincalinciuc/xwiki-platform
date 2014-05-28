@@ -9,4 +9,3 @@ org.xwiki.wysiwyg.internal.plugin.alfresco.server.SiteMinderAuthenticator
 org.xwiki.wysiwyg.internal.plugin.alfresco.server.TicketAuthenticator
 org.xwiki.wysiwyg.internal.plugin.alfresco.server.UrlNodeReferenceParser
 org.xwiki.wysiwyg.internal.plugin.alfresco.server.DefaultAlfrescoTokenManager
-org.xwiki.wysiwyg.internal.plugin.alfresco.server.DefaultAuthDialogManager

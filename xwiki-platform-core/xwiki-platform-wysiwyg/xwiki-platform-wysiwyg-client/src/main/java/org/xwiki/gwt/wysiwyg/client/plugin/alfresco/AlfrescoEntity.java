@@ -58,7 +58,7 @@ public class AlfrescoEntity extends Entity
 
     /**
      * Sets the name of this entity.
-     * 
+     *
      * @param name the new entity name
      */
     public void setName(String name)
@@ -76,7 +76,7 @@ public class AlfrescoEntity extends Entity
 
     /**
      * Sets the media type of this entity.
-     * 
+     *
      * @param mediaType the new media type
      */
     public void setMediaType(String mediaType)
@@ -94,7 +94,7 @@ public class AlfrescoEntity extends Entity
 
     /**
      * Sets the relative path to this entity.
-     * 
+     *
      * @param path the new relative path
      */
     public void setPath(String path)
@@ -112,7 +112,7 @@ public class AlfrescoEntity extends Entity
 
     /**
      * Sets the preview URL.
-     * 
+     *
      * @param previewURL the new preview URL
      */
     public void setPreviewURL(String previewURL)

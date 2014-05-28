@@ -41,7 +41,6 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AuthDialogManager;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
 
 /**
@@ -97,16 +96,10 @@ public class TicketAuthenticator implements Authenticator
      */
     @Inject
     private AlfrescoTokenManager ticketManager;
-    /**
-     * The component used to show dialog.
-     */
-    @Inject
-    private AuthDialogManager dialogManager;
 
     @Override
     public void authenticate(HttpRequestBase request)
     {
-        dialogManager.showDialog();
         String ticket = null;
         //get ticket from DB
         AlfrescoTiket dbTiket = ticketManager.getTicket();
