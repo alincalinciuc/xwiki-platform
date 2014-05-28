@@ -46,7 +46,7 @@ public class AuthDialog extends DialogBox
         setWidget(ok);
     }
     /**
-     * @return the user forom input
+     * @return the user from input
      */
     public String getUser() {
         return user;
