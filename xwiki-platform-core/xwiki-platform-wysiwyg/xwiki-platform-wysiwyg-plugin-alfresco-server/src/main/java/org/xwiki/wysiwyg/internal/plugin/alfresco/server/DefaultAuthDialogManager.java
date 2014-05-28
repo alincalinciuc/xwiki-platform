@@ -19,6 +19,7 @@
  */
 package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
 
+import com.google.gwt.core.client.EntryPoint;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AuthDialog;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AuthDialogManager;
@@ -33,10 +34,29 @@ import javax.inject.Singleton;
  */
 @Component
 @Singleton
-public class DefaultAuthDialogManager implements AuthDialogManager
+public class DefaultAuthDialogManager implements AuthDialogManager, EntryPoint
 {
+    private AuthDialog dialog;
     @Override
     public void showDialog() {
-        new AuthDialog().show();
+        dialog.show();
+    }
+
+    @Override
+    public void onModuleLoad() {
+        dialog = new AuthDialog();
+    }
+
+    /**
+     * @return the dialog for alfresco
+     */
+    public AuthDialog getDialog() {
+        return dialog;
+    }
+    /**
+     * @param dialog asdasd
+     */
+    public void setDialog(AuthDialog dialog) {
+        this.dialog = dialog;
     }
 }
