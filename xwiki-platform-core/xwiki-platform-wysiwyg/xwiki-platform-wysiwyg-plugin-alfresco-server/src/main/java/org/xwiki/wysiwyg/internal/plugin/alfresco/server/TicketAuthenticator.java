@@ -25,7 +25,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpRequestBase;
@@ -35,7 +35,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.container.Container;
-import org.xwiki.container.servlet.ServletRequest;
+//import org.xwiki.container.servlet.ServletRequest;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.wysiwyg.plugin.alfresco.server.Authenticator;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
@@ -102,20 +102,20 @@ public class TicketAuthenticator implements Authenticator
     @Override
     public void authenticate(HttpRequestBase request)
     {
-        HttpSession session = ((ServletRequest) container.getRequest()).getHttpServletRequest().getSession();
-        String ticket = (String) session.getAttribute(AUTH_TICKET_SESSION_ATTRIBUTE);
-        if (ticket == null) {
-            AlfrescoTiket dbTiket = ticketManager.getTicket();
-            //ticket = getAuthenticationTicket();
-            if (dbTiket != null) {
-                ticket = dbTiket.getTiket();
-                if (!ticketManager.validateAuthenticationTicket(ticket)) {
-                    ticket = getAuthenticationTicket();
-                }
-            } else {
+        //HttpSession session = ((ServletRequest) container.getRequest()).getHttpServletRequest().getSession();
+        String ticket = null;
+        //(String) session.getAttribute(AUTH_TICKET_SESSION_ATTRIBUTE);
+        AlfrescoTiket dbTiket = ticketManager.getTicket();
+        if (dbTiket != null) {
+            ticket = dbTiket.getTiket();
+        }
+        if (ticket != null) {
+            if (!ticketManager.validateAuthenticationTicket(ticket)) {
                 ticket = getAuthenticationTicket();
             }
-            session.setAttribute(AUTH_TICKET_SESSION_ATTRIBUTE, ticket);
+            //session.setAttribute(AUTH_TICKET_SESSION_ATTRIBUTE, ticket);
+        } else {
+            ticket = getAuthenticationTicket();
         }
 
         // Add the ticket to the query string.
@@ -139,8 +139,8 @@ public class TicketAuthenticator implements Authenticator
         try {
             String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
             JSONObject content = new JSONObject();
-            AuthDialog auth = new AuthDialog();
-            auth.show();
+            //AuthDialog auth = new AuthDialog();
+            //auth.show();
             content.put("username", configuration.getUserName());
             content.put("password", configuration.getPassword());
             String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
