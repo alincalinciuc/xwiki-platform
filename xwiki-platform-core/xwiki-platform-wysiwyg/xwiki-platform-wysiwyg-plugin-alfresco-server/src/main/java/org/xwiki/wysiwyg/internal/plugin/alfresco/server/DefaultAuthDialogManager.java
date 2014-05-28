@@ -39,6 +39,9 @@ public class DefaultAuthDialogManager implements AuthDialogManager, EntryPoint
     private AuthDialog dialog;
     @Override
     public void showDialog() {
+        if (dialog == null) {
+            dialog = new AuthDialog();
+        }
         dialog.show();
     }
 
