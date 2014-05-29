@@ -32,6 +32,7 @@ import org.apache.http.client.utils.URIUtils;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
+import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.container.Container;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
@@ -72,7 +73,8 @@ public class TicketAuthenticator implements Authenticator
      */
     @Inject
     private Container container;
-
+    @Inject
+    private Logger logger;
     /**
      * The component that controls the Alfresco access configuration.
      */
@@ -100,6 +102,7 @@ public class TicketAuthenticator implements Authenticator
     @Override
     public void authenticate(HttpRequestBase request)
     {
+        logger.error("Authenticating");
         String ticket = null;
         //get ticket from DB
         AlfrescoTiket dbTiket = ticketManager.getTicket();
