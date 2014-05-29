@@ -23,7 +23,6 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStepProvider;
@@ -34,8 +33,6 @@ import org.xwiki.gwt.wysiwyg.client.widget.wizard.util.ResourceReferenceSerializ
 import org.xwiki.gwt.wysiwyg.client.wiki.EntityConfig;
 import org.xwiki.gwt.wysiwyg.client.wiki.WikiServiceAsync;
 
-import javax.inject.Inject;
-
 /**
  * Provides wizard steps for the Alfresco wizard.
  * 
@@ -43,8 +40,6 @@ import javax.inject.Inject;
  */
 public class AlfrescoWizardStepProvider implements WizardStepProvider
 {
-    @Inject
-    private Logger logger;
     /**
      * Available wizard steps.
      */
@@ -97,7 +92,6 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
     {
         this.wikiService = wikiService;
         this.alfrescoService = alfrescoService;
-        logger.error("Step prov init");
     }
 
     /**
@@ -107,7 +101,6 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
      */
     public WizardStep getStep(String name)
     {
-        logger.error("Get step");
         AlfrescoWizardStep requestedStep = null;
         try {
             requestedStep = AlfrescoWizardStep.valueOf(name);
@@ -134,7 +127,6 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
         WizardStep step = null;
         switch (requestedStep) {
             case CREDENTIAL_GETTER:
-                logger.error("This will never show");
                 step = createCredentialGetterStep();
                 break;
             case RESOURCE_REFERENCE_PARSER:
@@ -165,7 +157,6 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
      */
     private WizardStep createCredentialGetterStep()
     {
-        logger.error("CREDENTIALS");
         AlfrescoCredentialGetterWizardStep credentialsSelector = new AlfrescoCredentialGetterWizardStep();
         credentialsSelector.setStepTitle("Login to alfresco");
         credentialsSelector.setNextStep(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString());

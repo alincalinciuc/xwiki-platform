@@ -19,7 +19,6 @@
  */
 package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
-import org.slf4j.Logger;
 import org.xwiki.gwt.user.client.Config;
 import org.xwiki.gwt.user.client.ui.rta.RichTextArea;
 import org.xwiki.gwt.user.client.ui.rta.cmd.Command;
@@ -46,8 +45,6 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.ui.Image;
 
-import javax.inject.Inject;
-
 /**
  * WYSIWYG editor plug-in for inserting Alfresco links and images.
  * 
@@ -55,8 +52,6 @@ import javax.inject.Inject;
  */
 public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
 {
-    @Inject
-    private Logger logger;
     /**
      * The magic wand used to cast <em>Alfresco</em> spells on the underlying rich text area.
      */
@@ -146,7 +141,6 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
      */
     public void link()
     {
-        logger.error("you want link");
         LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
         linkConfig.setType(LinkType.EXTERNAL);
         getWizard().start(AlfrescoWizardStep.CREDENTIAL_GETTER.toString(), createEntityLink(linkConfig));
@@ -157,7 +151,6 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
      */
     public void image()
     {
-        logger.error("you want image");
         ImageConfig imageConfig;
         String imageJSON = getTextArea().getCommandManager().getStringValue(Command.INSERT_IMAGE);
         if (imageJSON != null) {
