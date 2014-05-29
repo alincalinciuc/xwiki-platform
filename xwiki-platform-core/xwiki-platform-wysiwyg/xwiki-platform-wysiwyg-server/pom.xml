@@ -49,6 +49,12 @@
       <version>${project.version}</version>
       <classifier>shared</classifier>
     </dependency>
+      <!-- Alfresco libraries -->
+      <dependency>
+          <groupId>org.xwiki.platform</groupId>
+          <artifactId>xwiki-platform-wysiwyg-plugin-alfresco-server</artifactId>
+          <version>${project.version}</version>
+      </dependency>
     <!-- XWiki dependencies -->
     <dependency>
       <groupId>org.xwiki.commons</groupId>

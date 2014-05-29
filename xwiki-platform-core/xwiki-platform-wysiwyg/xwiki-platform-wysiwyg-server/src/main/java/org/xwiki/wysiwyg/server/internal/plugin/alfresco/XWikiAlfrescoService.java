@@ -37,6 +37,8 @@ import org.xwiki.model.reference.AttachmentReference;
 import org.xwiki.model.reference.DocumentReference;
 import org.xwiki.model.reference.SpaceReference;
 import org.xwiki.model.reference.WikiReference;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
 import org.xwiki.wysiwyg.server.wiki.EntityReferenceConverter;
 
 /**
@@ -53,7 +55,11 @@ public class XWikiAlfrescoService implements AlfrescoService
      */
     @Inject
     private WikiService wikiService;
-
+    /**
+     * The component used to parse the ticket response.
+     */
+    @Inject
+    private AlfrescoTokenManager ticketManager;
     /**
      * The object used to convert between client references and server references.
      */
@@ -100,7 +106,22 @@ public class XWikiAlfrescoService implements AlfrescoService
         }
         return parent;
     }
-
+    @Override
+    public Boolean hasValidTicket(String ticket1) {
+        String ticket = null;
+        //get ticket from DB
+        AlfrescoTiket dbTiket = ticketManager.getTicket();
+        //if there is a ticket for current user,use it
+        if (dbTiket != null) {
+            ticket = dbTiket.getTiket();
+        }
+        if (ticket != null) {
+            if (ticketManager.validateAuthenticationTicket(ticket)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * @param entityReference an entity reference
      * @return the path to the specified entity reference
