@@ -77,7 +77,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      */
     public AlfrescoCredentialGetterWizardStep()
     {
-        super(new VerticalResizePanel());
 
         display().addStyleName(DEFAULT_STYLE_NAME);
         display().add(userTextBox);
