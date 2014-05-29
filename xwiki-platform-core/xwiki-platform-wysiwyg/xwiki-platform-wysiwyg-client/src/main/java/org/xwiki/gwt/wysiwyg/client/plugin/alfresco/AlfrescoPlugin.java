@@ -44,6 +44,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.user.client.ui.Image;
+//import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+//import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 
 /**
  * WYSIWYG editor plug-in for inserting Alfresco links and images.

@@ -30,7 +30,6 @@ import org.xwiki.gwt.user.client.ui.wizard.SourcesNavigationEvents;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
-import org.xwiki.gwt.wysiwyg.client.Strings;
 
 /**
  * Wizard step that selects an Alfresco entity.
