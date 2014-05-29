@@ -47,6 +47,7 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
     {
         /** The step that asks for credentials. */
         CREDENTIAL_GETTER,
+
         /** The step that parses the link and image references. */
         RESOURCE_REFERENCE_PARSER,
 
@@ -157,11 +158,11 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
     private WizardStep createCredentialGetterStep()
     {
         AlfrescoCredentialGetterWizardStep credentialsSelector = new AlfrescoCredentialGetterWizardStep();
-        credentialsSelector.setStepTitle(AlfrescoConstants.INSTANCE.linkSelectorTitle());
-        credentialsSelector.setNextStep(AlfrescoWizardStep.LINK_SETTINGS.toString());
-        credentialsSelector.setValidDirections(EnumSet.of(NavigationDirection.NEXT, NavigationDirection.FINISH));
+        credentialsSelector.setStepTitle("Login to alfresco");
+        credentialsSelector.setNextStep(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString());
+        credentialsSelector.setValidDirections(EnumSet.of(NavigationDirection.NEXT));
         credentialsSelector.setDirectionName(NavigationDirection.NEXT, Strings.INSTANCE.linkSettingsLabel());
-        credentialsSelector.setDirectionName(NavigationDirection.FINISH, Strings.INSTANCE.linkCreateLinkButton());
+        //credentialsSelector.setDirectionName(NavigationDirection.FINISH, Strings.INSTANCE.linkCreateLinkButton());
         return credentialsSelector;
     }
 

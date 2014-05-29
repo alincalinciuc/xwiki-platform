@@ -1,0 +1,200 @@
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  33888  1496 ?        Ss   09:03   0:01 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    09:03   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    09:03   0:00 [ksoftirqd/0]
+root         4  0.0  0.0      0     0 ?        S    09:03   0:00 [kworker/0:0]
+root         5  0.0  0.0      0     0 ?        S<   09:03   0:00 [kworker/0:0H]
+root         7  0.0  0.0      0     0 ?        S    09:03   0:02 [rcu_sched]
+root         8  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuos/0]
+root         9  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuos/1]
+root        10  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuos/2]
+root        11  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuos/3]
+root        12  0.0  0.0      0     0 ?        S    09:03   0:00 [rcu_bh]
+root        13  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuob/0]
+root        14  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuob/1]
+root        15  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuob/2]
+root        16  0.0  0.0      0     0 ?        S    09:03   0:00 [rcuob/3]
+root        17  0.0  0.0      0     0 ?        S    09:03   0:00 [migration/0]
+root        18  0.0  0.0      0     0 ?        S    09:03   0:00 [watchdog/0]
+root        19  0.0  0.0      0     0 ?        S    09:03   0:00 [watchdog/1]
+root        20  0.0  0.0      0     0 ?        S    09:03   0:00 [migration/1]
+root        21  0.0  0.0      0     0 ?        S    09:03   0:00 [ksoftirqd/1]
+root        23  0.0  0.0      0     0 ?        S<   09:03   0:00 [kworker/1:0H]
+root        24  0.0  0.0      0     0 ?        S    09:03   0:00 [watchdog/2]
+root        25  0.0  0.0      0     0 ?        S    09:03   0:00 [migration/2]
+root        26  0.0  0.0      0     0 ?        S    09:03   0:00 [ksoftirqd/2]
+root        27  0.0  0.0      0     0 ?        S    09:03   0:00 [kworker/2:0]
+root        28  0.0  0.0      0     0 ?        S<   09:03   0:00 [kworker/2:0H]
+root        29  0.0  0.0      0     0 ?        S    09:03   0:00 [watchdog/3]
+root        30  0.0  0.0      0     0 ?        S    09:03   0:00 [migration/3]
+root        31  0.0  0.0      0     0 ?        S    09:03   0:00 [ksoftirqd/3]
+root        33  0.0  0.0      0     0 ?        S<   09:03   0:00 [kworker/3:0H]
+root        34  0.0  0.0      0     0 ?        S<   09:03   0:00 [khelper]
+root        35  0.0  0.0      0     0 ?        S    09:03   0:00 [kdevtmpfs]
+root        36  0.0  0.0      0     0 ?        S<   09:03   0:00 [netns]
+root        37  0.0  0.0      0     0 ?        S<   09:03   0:00 [writeback]
+root        38  0.0  0.0      0     0 ?        S<   09:03   0:00 [kintegrityd]
+root        39  0.0  0.0      0     0 ?        S<   09:03   0:00 [bioset]
+root        40  0.0  0.0      0     0 ?        S<   09:03   0:00 [kworker/u9:0]
+root        41  0.0  0.0      0     0 ?        S<   09:03   0:00 [kblockd]
+root        42  0.0  0.0      0     0 ?        S<   09:03   0:00 [ata_sff]
+root        43  0.0  0.0      0     0 ?        S    09:03   0:00 [khubd]
+root        44  0.0  0.0      0     0 ?        S<   09:03   0:00 [md]
+root        45  0.0  0.0      0     0 ?        S<   09:03   0:00 [devfreq_wq]
+root        46  0.0  0.0      0     0 ?        S    09:03   0:01 [kworker/0:1]
+root        47  0.0  0.0      0     0 ?        S    09:03   0:00 [kworker/1:1]
+root        48  0.0  0.0      0     0 ?        S    09:03   0:02 [kworker/2:1]
+root        49  0.0  0.0      0     0 ?        S    09:03   0:02 [kworker/3:1]
+root        50  0.0  0.0      0     0 ?        S    09:03   0:00 [khungtaskd]
+root        51  0.2  0.0      0     0 ?        S    09:03   0:08 [kswapd0]
+root        52  0.0  0.0      0     0 ?        SN   09:03   0:00 [ksmd]
+root        53  0.0  0.0      0     0 ?        SN   09:03   0:00 [khugepaged]
+root        54  0.0  0.0      0     0 ?        S    09:03   0:00 [fsnotify_mark]
+root        55  0.0  0.0      0     0 ?        S    09:03   0:00 [ecryptfs-kthrea]
+root        56  0.0  0.0      0     0 ?        S<   09:03   0:00 [crypto]
+root        68  0.0  0.0      0     0 ?        S<   09:03   0:00 [kthrotld]
+root        70  0.0  0.0      0     0 ?        S    09:03   0:00 [scsi_eh_0]
+root        71  0.0  0.0      0     0 ?        S    09:03   0:00 [scsi_eh_1]
+root        72  0.0  0.0      0     0 ?        S    09:03   0:01 [kworker/u8:2]
+root        92  0.0  0.0      0     0 ?        S<   09:03   0:00 [deferwq]
+root        93  0.0  0.0      0     0 ?        S<   09:03   0:00 [charger_manager]
+root        94  0.0  0.0      0     0 ?        S    09:03   0:02 [kworker/1:2]
+root       147  0.0  0.0      0     0 ?        S<   09:03   0:00 [firewire]
+root       149  0.0  0.0      0     0 ?        S<   09:03   0:00 [firewire_ohci]
+root       157  0.0  0.0      0     0 ?        S    09:03   0:00 [jbd2/sda1-8]
+root       158  0.0  0.0      0     0 ?        S<   09:03   0:00 [ext4-rsv-conver]
+root       282  0.0  0.0  19472   248 ?        S    09:03   0:00 upstart-udev-bridge --daemon
+root       287  0.0  0.0  51712   300 ?        Ss   09:03   0:00 /lib/systemd/systemd-udevd --daemon
+root       389  0.0  0.0  15260   168 ?        S    09:03   0:00 upstart-socket-bridge --daemon
+root       468  0.0  0.0      0     0 ?        S<   09:03   0:00 [hd-audio0]
+root       516  0.0  0.0      0     0 ?        S<   09:03   0:00 [kworker/u9:1]
+message+   625  0.0  0.0  40244   900 ?        Ss   09:03   0:00 dbus-daemon --system --fork
+root       640  0.0  0.0  15276   392 ?        S    09:03   0:00 upstart-file-bridge --daemon
+syslog     643  0.0  0.0 255840   540 ?        Ssl  09:03   0:00 rsyslogd
+root       661  0.0  0.0 330232   892 ?        Ssl  09:03   0:00 /usr/sbin/ModemManager
+root       663  0.0  0.0  19292   400 ?        Ss   09:03   0:00 /usr/sbin/bluetoothd
+root       770  0.0  0.0  43544   608 ?        Ss   09:03   0:00 /lib/systemd/systemd-logind
+avahi      775  0.0  0.0  32340   644 ?        S    09:03   0:00 avahi-daemon: running [andreic-EG41MF-US2H.local]
+root       798  0.0  0.0      0     0 ?        S<   09:03   0:00 [krfcommd]
+avahi      805  0.0  0.0  32224    52 ?        S    09:03   0:00 avahi-daemon: chroot helper
+root       807  0.0  0.0  21488   268 tty4     Ss+  09:03   0:00 /sbin/getty -8 38400 tty4
+root       811  0.0  0.0  21488   268 tty5     Ss+  09:03   0:00 /sbin/getty -8 38400 tty5
+root       817  0.0  0.0  21488   268 tty2     Ss+  09:03   0:00 /sbin/getty -8 38400 tty2
+root       818  0.0  0.0  21488   268 tty3     Ss+  09:03   0:00 /sbin/getty -8 38400 tty3
+root       822  0.0  0.0  21488   268 tty6     Ss+  09:03   0:00 /sbin/getty -8 38400 tty6
+root       884  0.0  0.0   4368   172 ?        Ss   09:03   0:00 acpid -c /etc/acpi/events -s /var/run/acpid.socket
+root       889  0.0  0.0  75352   524 ?        Ss   09:03   0:00 /usr/sbin/cups-browsed
+kernoops   896  0.0  0.0  37144   552 ?        Ss   09:03   0:00 /usr/sbin/kerneloops
+root       909  0.0  0.0  19188   404 ?        Ss   09:03   0:00 /usr/sbin/irqbalance
+root       911  0.0  0.0  23656   244 ?        Ss   09:03   0:00 cron
+mysql      932  0.0  0.2 484432  9604 ?        Ssl  09:03   0:02 /usr/sbin/mysqld
+root       945  0.0  0.0 292644  1160 ?        SLsl 09:03   0:00 lightdm
+root       996  0.0  0.0 358072  1864 ?        Ssl  09:03   0:00 NetworkManager
+root      1005  0.0  0.0 295876  1440 ?        Sl   09:03   0:00 /usr/lib/policykit-1/polkitd --no-debug
+root      1006  1.6  0.8 525504 32272 tty7     Ssl+ 09:03   0:57 /usr/bin/X -core :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+root      1020  0.0  0.0 302240  1312 ?        Sl   09:03   0:00 /usr/lib/accountsservice/accounts-daemon
+root      1025  0.0  0.0  21488   268 tty1     Ss+  09:03   0:00 /sbin/getty -8 38400 tty1
+whoopsie  1049  0.0  0.0 363408  1332 ?        Ssl  09:03   0:00 whoopsie
+root      1091  0.0  0.0      0     0 ?        S    09:03   0:00 [kauditd]
+nobody    1175  0.0  0.0  36696   640 ?        S    09:03   0:00 /usr/sbin/dnsmasq --no-resolv --keep-in-foreground --no-hosts --bind-interfaces --pid-file=/run/sendsigs.omit.d/network-manager.dnsmasq.pid --listen-address=127.0.1.1 --conf-file=/var/run/NetworkManager/dnsmasq.conf --cache-size=0 --proxy-dnssec --enable-dbus=org.freedesktop.NetworkManager.dnsmasq --conf-dir=/etc/NetworkManager/dnsmasq.d
+root      1293  0.0  0.0 170484  1112 ?        Sl   09:03   0:00 lightdm --session-child 12 19
+root      1338  0.0  0.0 239352  1240 ?        Sl   09:03   0:00 /usr/lib/upower/upowerd
+rtkit     1435  0.0  0.0 168916   432 ?        SNl  09:03   0:00 /usr/lib/rtkit/rtkit-daemon
+colord    1552  0.0  0.0 311012  1144 ?        Sl   09:03   0:00 /usr/lib/colord/colord
+andreic   1589  0.0  0.0 250492  1004 ?        Sl   09:03   0:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+andreic   1592  0.0  0.0  41800   780 ?        Ss   09:03   0:00 init --user
+andreic   1650  0.0  0.0  24440    92 ?        S    09:03   0:00 dbus-launch --autolaunch=a9fe3831b87a6bd54dcb37b55358ca3e --binary-syntax --close-stderr
+andreic   1652  0.0  0.0  39096    24 ?        Ss   09:03   0:00 //bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+andreic   1666  0.0  0.0  10616     4 ?        Ss   09:03   0:00 ssh-agent
+andreic   1671  0.1  0.0  41288  1484 ?        Ss   09:03   0:06 dbus-daemon --fork --session --address=unix:abstract=/tmp/dbus-PnsNblBlrD
+andreic   1679  0.0  0.0  23772   432 ?        Ss   09:03   0:00 upstart-event-bridge
+andreic   1682  0.0  0.0  79800  1276 ?        Ss   09:03   0:00 /usr/lib/x86_64-linux-gnu/hud/window-stack-bridge
+andreic   1706  0.0  0.0  32256   248 ?        S    09:03   0:00 upstart-file-bridge --daemon --user
+andreic   1708  0.0  0.0  23780   408 ?        S    09:03   0:02 upstart-dbus-bridge --daemon --session --user --bus-name session
+andreic   1710  0.0  0.0  23780   136 ?        S    09:03   0:00 upstart-dbus-bridge --daemon --system --user --bus-name system
+andreic   1711  0.0  0.0 451936  2384 ?        Ssl  09:03   0:02 /usr/bin/ibus-daemon --daemonize --xim
+andreic   1725  0.0  0.1 825064  4724 ?        Ssl  09:03   0:00 /usr/lib/unity-settings-daemon/unity-settings-daemon
+andreic   1729  0.0  0.0 680172  3964 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/hud/hud-service
+andreic   1737  0.0  0.0 367704  1104 ?        Ssl  09:03   0:00 /usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately
+andreic   1738  0.0  0.0 594932  1940 ?        Ssl  09:03   0:00 gnome-session --session=ubuntu
+andreic   1740  0.5  0.7 733720 28296 ?        Ssl  09:03   0:18 /usr/lib/unity/unity-panel-service
+andreic   1745  0.0  0.0  39352   552 ?        S    09:03   0:00 /bin/dbus-daemon --config-file=/etc/at-spi2/accessibility.conf --nofork --print-address 3
+andreic   1748  0.0  0.0 124912  1268 ?        Sl   09:03   0:00 /usr/lib/at-spi2-core/at-spi2-registryd --use-gnome-session
+andreic   1756  0.0  0.0 198112  1008 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfsd
+andreic   1760  0.0  0.0 360424   808 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfsd-fuse /run/user/1000/gvfs -f -o big_writes
+andreic   1854  0.0  0.0 297244  1056 ?        Sl   09:03   0:00 /usr/lib/ibus/ibus-dconf
+andreic   1867  0.0  0.1 493232  4268 ?        Sl   09:03   0:01 /usr/lib/ibus/ibus-ui-gtk3
+andreic   1872  0.0  0.0 397872  1536 ?        Sl   09:03   0:00 /usr/lib/ibus/ibus-x11 --kill-daemon
+andreic   1887  0.0  0.0 221384  1200 ?        Sl   09:03   0:00 /usr/lib/ibus/ibus-engine-simple
+andreic   1889  0.0  0.0 563520  3576 ?        Sl   09:03   0:01 /usr/lib/x86_64-linux-gnu/bamf/bamfdaemon
+andreic   1906  0.0  0.0 178308   952 ?        Sl   09:03   0:00 /usr/lib/dconf/dconf-service
+andreic   1915  0.1  0.0 375380   652 ?        S<l  09:03   0:05 /usr/bin/pulseaudio --start --log-target=syslog
+andreic   1940  0.0  0.0 674184  2448 ?        Sl   09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-keyboard-service --use-gtk
+andreic   1947  0.0  0.0 366672   940 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-messages/indicator-messages-service
+andreic   1948  0.0  0.0 295244   952 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-bluetooth/indicator-bluetooth-service
+andreic   1954  0.0  0.0 297256  1104 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-power/indicator-power-service
+andreic   1956  0.0  0.0 1166872 1600 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-datetime/indicator-datetime-service
+andreic   1961  0.0  0.0 570816  1196 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-sound/indicator-sound-service
+andreic   1966  0.0  0.0 457512  1804 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-printers/indicator-printers-service
+andreic   1972  0.0  0.0 436484  2456 ?        Sl   09:03   0:00 /usr/lib/x86_64-linux-gnu/notify-osd
+andreic   2009  0.0  0.0 907876  1084 ?        Ssl  09:03   0:00 /usr/lib/x86_64-linux-gnu/indicator-session/indicator-session-service
+andreic   2015  0.2  0.0 286748  1620 ?        Ssl  09:03   0:07 /usr/lib/x86_64-linux-gnu/indicator-application/indicator-application-service
+andreic   2033  0.0  0.0 494076  1104 ?        Sl   09:03   0:00 /usr/lib/evolution/evolution-source-registry
+andreic   2085  3.5  0.5 1222844 22008 ?       Sl   09:03   2:07 compiz
+andreic   2099  0.0  0.0 1097692 1024 ?        Sl   09:03   0:00 /usr/lib/evolution/evolution-calendar-factory
+andreic   2102  0.0  0.4 1297904 18596 ?       Sl   09:03   0:01 nautilus -n
+andreic   2127  0.0  0.0 609024  2544 ?        Sl   09:03   0:00 nm-applet
+andreic   2128  0.0  0.0 412272  1856 ?        Sl   09:03   0:00 /usr/lib/unity-settings-daemon/unity-fallback-mount-helper
+andreic   2131  0.0  0.1 461596  4252 ?        Sl   09:03   0:02 /usr/bin/python3 /usr/bin/indicator-cpufreq
+andreic   2132  0.0  0.0 342684  1696 ?        Sl   09:03   0:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+andreic   2144  0.9  0.1 423944  4052 ?        Sl   09:03   0:34 indicator-multiload
+andreic   2146  0.0  0.0  59752  1488 ?        S    09:03   0:00 /usr/lib/x86_64-linux-gnu/gconf/gconfd-2
+andreic   2148  0.0  0.2 655696 11044 ?        Sl   09:03   0:02 /usr/bin/python /usr/bin/guake
+andreic   2153  0.1  0.1 655948  5912 ?        Sl   09:03   0:04 /usr/bin/python /usr/bin/classicmenu-indicator
+andreic   2158  0.0  0.0 312900  1900 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfs-udisks2-volume-monitor
+root      2164  0.0  0.0 386152  1616 ?        Sl   09:03   0:00 /usr/lib/udisks2/udisksd --no-debug
+andreic   2181  0.0  0.0 213912  1004 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+andreic   2187  0.0  0.0 201748   792 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfs-mtp-volume-monitor
+andreic   2191  0.0  0.0 287436   952 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+andreic   2213  0.0  0.0 271848   932 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfsd-burn --spawner :1.6 /org/gtk/gvfs/exec_spaw/0
+andreic   2219  0.0  0.0 449400   968 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfsd-trash --spawner :1.6 /org/gtk/gvfs/exec_spaw/1
+root      2291  0.0  0.0  76852   428 ?        Ss   09:03   0:00 /usr/sbin/cupsd -f
+andreic   2298  0.0  0.0  14824   204 ?        S    09:03   0:00 gnome-pty-helper
+andreic   2299  0.0  0.0  28964  1416 pts/14   Ss   09:03   0:00 /bin/bash
+andreic   2325  0.0  0.0 458668  1644 ?        Sl   09:03   0:00 telepathy-indicator
+andreic   2396  0.0  0.0 336588  1416 ?        Sl   09:03   0:00 /usr/lib/telepathy/mission-control-5
+andreic   2408  0.0  0.0 125912   928 ?        Sl   09:03   0:00 /usr/lib/gvfs/gvfsd-metadata
+andreic   2426  0.0  0.0 561256  1292 ?        Sl   09:03   0:00 zeitgeist-datahub
+andreic   2432  0.0  0.0 363628  1676 ?        Sl   09:03   0:00 /usr/bin/zeitgeist-daemon
+andreic   2440  0.0  0.0 330124  1924 ?        Sl   09:03   0:00 /usr/lib/x86_64-linux-gnu/zeitgeist-fts
+andreic   2460  0.0  0.0  12884   120 ?        S    09:03   0:00 /bin/cat
+andreic   2480  1.1  2.5 1024580 104264 ?      SLl  09:04   0:39 /opt/google/chrome/chrome    
+andreic   2487  0.0  0.0 299916  2596 ?        S    09:04   0:01 /opt/google/chrome/chrome --type=sandbox-ipc
+andreic   2488  0.0  0.0   6500     0 ?        S    09:04   0:00 /opt/google/chrome/chrome-sandbox /opt/google/chrome/chrome --type=zygote
+andreic   2489  0.0  0.0 352224  1460 ?        S    09:04   0:00 /opt/google/chrome/chrome --type=zygote
+andreic   2495  0.0  0.0  88660   280 ?        S    09:04   0:00 /opt/google/chrome/nacl_helper
+andreic   2496  0.0  0.0 360420  1540 ?        S    09:04   0:00 /opt/google/chrome/chrome --type=zygote
+andreic   2518  0.6  2.2 875496 89028 ?        Sl   09:04   0:23 /opt/google/chrome/chrome --type=gpu-process --channel=2480.0.2009585241 --supports-dual-gpus=false --gpu-driver-bug-workarounds=1,9,13 --disable-accelerated-video-decode --gpu-vendor-id=0x8086 --gpu-device-id=0x2e32 --gpu-driver-vendor --gpu-driver-version
+andreic   2523  0.0  0.0 365020   360 ?        S    09:04   0:00 /opt/google/chrome/chrome --type=gpu-broker                                                                                                                                                                                                           
+andreic   2545  0.0  0.1 968728  7004 ?        Sl   09:04   0:00 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --extension-process --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.2.1859939667
+andreic   2594  0.0  0.1 972396  7392 ?        Sl   09:04   0:00 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --extension-process --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.3.101951385
+andreic   2599  0.0  0.0 966648  3968 ?        Sl   09:04   0:00 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --extension-process --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.4.771807286
+andreic   2643  0.3  0.3 1045948 13396 ?       Sl   09:04   0:12 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.6.1966632170
+andreic   2648  0.1  0.1 1037476 7756 ?        Sl   09:04   0:03 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.7.1462190383
+andreic   2653  0.0  0.1 1005592 6096 ?        Sl   09:04   0:00 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.8.1195947501
+andreic   2676  0.3  0.1 1012364 4444 ?        Sl   09:04   0:11 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.9.1029412707
+andreic   2689  0.0  0.2 1002500 8708 ?        Sl   09:04   0:00 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.10.1866299007
+andreic   2710  0.1  0.8 980660 34028 ?        Sl   09:04   0:06 /opt/google/chrome/chrome --type=ppapi --channel=2480.11.1197022850 --ppapi-flash-args --lang=en-US
+andreic   2757  0.0  0.0 585324  2848 ?        Sl   09:04   0:00 update-notifier
+andreic   2780  0.0  0.0 386760  1104 ?        Sl   09:05   0:00 /usr/lib/x86_64-linux-gnu/deja-dup/deja-dup-monitor
+andreic   2788  0.0  0.0   4444   212 ?        S    09:06   0:00 /bin/sh /opt/idea/bin/idea.sh
+andreic   2836 21.7 19.4 3882668 778456 ?      Sl   09:06  12:10 /usr/lib/jvm/java-7-openjdk-amd64/bin/java -Xms128m -Xmx750m -XX:MaxPermSize=350m -XX:ReservedCodeCacheSize=96m -ea -Dsun.io.useCanonCaches=false -Djava.net.preferIPv4Stack=true -Djsse.enableSNIExtension=false -XX:+UseCodeCacheFlushing -XX:+UseConcMarkSweepGC -XX:SoftRefLRUPolicyMSPerMB=50 -Dawt.useSystemAAFontSettings=lcd -Djb.vmOptionsFile=/opt/idea/bin/idea64.vmoptions -Xbootclasspath/a:/opt/idea/bin/../lib/boot.jar -Didea.paths.selector=IntelliJIdea13 -Djb.restart.code=88 com.intellij.idea.Main
+andreic   2985  0.1  0.2 2405188 10592 ?       Sl   09:08   0:05 /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java -Djava.awt.headless=true -Didea.version==13.1.2 -Xmx512m -Dfile.encoding=UTF-8 -classpath /opt/idea/lib/resources_en.jar:/opt/idea/lib/log4j.jar:/opt/idea/lib/jdom.jar:/opt/idea/lib/jna.jar:/opt/idea/lib/util.jar:/opt/idea/lib/jna-utils.jar:/opt/idea/lib/oromatcher.jar:/opt/idea/lib/trove4j.jar:/opt/idea/lib/picocontainer.jar:/opt/idea/lib/annotations.jar:/opt/idea/plugins/maven/lib/lucene-core-2.4.1.jar:/opt/idea/plugins/maven/lib/maven-server-api.jar:/opt/idea/plugins/maven/lib/maven3-server-impl.jar:/opt/idea/plugins/maven/lib/maven3/wagon-http-2.6-shaded.jar:/opt/idea/plugins/maven/lib/maven3/archetype-common-2.2.jar:/opt/idea/plugins/maven/lib/maven3/aether-spi-1.13.1.jar:/opt/idea/plugins/maven/lib/maven3/nexus-indexer-3.0.4.jar:/opt/idea/plugins/maven/lib/maven3/plexus-sec-dispatcher-1.3.jar:/opt/idea/plugins/maven/lib/maven3/maven-model-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/maven-plugin-api-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/sisu-inject-bean-2.3.0.jar:/opt/idea/plugins/maven/lib/maven3/wagon-file-2.6.jar:/opt/idea/plugins/maven/lib/maven3/sisu-guice-3.1.0-no_aop.jar:/opt/idea/plugins/maven/lib/maven3/maven-settings-builder-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/maven-core-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/maven-repository-metadata-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/plexus-classworlds-2.4.jar:/opt/idea/plugins/maven/lib/maven3/sisu-inject-plexus-2.3.0.jar:/opt/idea/plugins/maven/lib/maven3/maven-compat-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/plexus-component-annotations-1.5.5.jar:/opt/idea/plugins/maven/lib/maven3/nexus-indexer-artifact-1.0.1.jar:/opt/idea/plugins/maven/lib/maven3/wagon-provider-api-2.6.jar:/opt/idea/plugins/maven/lib/maven3/wagon-http-shared-2.6.jar:/opt/idea/plugins/maven/lib/maven3/maven-aether-provider-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/maven-embedder-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/aether-util-1.13.1.jar:/opt/idea/plugins/maven/lib/maven3/aether-connector-wagon-1.13.1.jar:/opt/idea/plugins/maven/lib/maven3/commons-cli-1.2.jar:/opt/idea/plugins/maven/lib/maven3/nekohtml-1.9.6.2.jar:/opt/idea/plugins/maven/lib/maven3/aether-impl-1.13.1.jar:/opt/idea/plugins/maven/lib/maven3/plexus-interpolation-1.14.jar:/opt/idea/plugins/maven/lib/maven3/archetype-catalog-2.2.jar:/opt/idea/plugins/maven/lib/maven3/aether-api-1.13.1.jar:/opt/idea/plugins/maven/lib/maven3/maven-model-builder-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/sisu-guava-0.9.9.jar:/opt/idea/plugins/maven/lib/maven3/maven-settings-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/plexus-utils-2.0.6.jar:/opt/idea/plugins/maven/lib/maven3/maven-artifact-3.0.5.jar:/opt/idea/plugins/maven/lib/maven3/xercesMinimal-1.9.6.2.jar:/opt/idea/plugins/maven/lib/maven3/plexus-cipher-1.7.jar:/opt/idea/plugins/maven/lib/maven3/maven-dependency-tree-1.2.jar org.jetbrains.idea.maven.server.RemoteMavenServer
+andreic   3168  1.1  0.8 1241968 33312 ?       Sl   09:18   0:30 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.13.1154850056
+root      3185  0.0  0.0      0     0 ?        S    09:18   0:00 [kworker/3:0]
+root      4675  0.0  0.0      0     0 ?        S    09:51   0:00 [kworker/u8:1]
+root      4830  0.0  0.0      0     0 ?        S    09:59   0:00 [kworker/u8:0]
+andreic   4889 17.2  4.5 1092560 181156 ?      Sl   10:01   0:08 /opt/google/chrome/chrome --type=renderer --lang=en-US --force-fieldtrials=AutocompleteDynamicTrial_2/DefaultControl_R2_Stable/ExtensionInstallVerification/None/OmniboxBundledExperimentV1/StableBookmarkValue2/OmniboxStopTimer/Standard/Prerender/PrerenderEnabled/PrerenderFromOmnibox/OmniboxPrerenderEnabled/PrerenderLocalPredictorSpec/LocalPredictor=Disabled/QUIC/Disabled/SettingsEnforcement/no_enforcement/Test0PercentDefault/group_01/UMA-Dynamic-Binary-Uniformity-Trial/default/UMA-New-Install-Uniformity-Trial/Experiment/UMA-Population-Restrict/normal/UMA-Session-Randomized-Uniformity-Trial-5-Percent/group_03/UMA-Uniformity-Trial-1-Percent/group_52/UMA-Uniformity-Trial-10-Percent/group_06/UMA-Uniformity-Trial-100-Percent/group_01/UMA-Uniformity-Trial-20-Percent/group_01/UMA-Uniformity-Trial-5-Percent/group_11/UMA-Uniformity-Trial-50-Percent/default/VoiceTrigger/Install/ --renderer-print-preview --enable-threaded-compositing --enable-delegated-renderer --disable-accelerated-video-decode --enable-software-compositing --channel=2480.15.867307439
+andreic   4912  0.0  0.0  15216   952 pts/14   T    10:02   0:00 less
+andreic   4916  0.0  0.0  24116  1332 pts/14   R+   10:02   0:00 ps aux
+andreic   4917  0.0  0.0  15216   952 pts/14   S+   10:02   0:00 less

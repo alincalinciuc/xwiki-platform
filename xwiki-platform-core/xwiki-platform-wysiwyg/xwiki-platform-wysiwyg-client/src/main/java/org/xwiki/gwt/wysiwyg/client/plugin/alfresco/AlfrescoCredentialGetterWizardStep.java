@@ -62,7 +62,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     /**
      * The credentials.
      */
-    private final AlfrescoCredentials credentials = new AlfrescoCredentials();
+    private AlfrescoCredentials credentials = new AlfrescoCredentials();
 
     /**
      * Navigation listeners to be notified by navigation events from this step. It generates navigation to the next step
@@ -92,7 +92,9 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     @SuppressWarnings("unchecked")
     public void init(Object data, final AsyncCallback< ? > callback)
     {
-        //AlfrescoCredentials credentials = getData();
+        credentials = (AlfrescoCredentials) data;
+        userTextBox.setText(credentials.getUsername());
+        passwordTextBox.setText(credentials.getPassword());
         hideErrors();
         callback.onSuccess(null);
         setFocus();
@@ -112,7 +114,21 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     {
         return passwordTextBox;
     }
+    /**
+     * @return the labelTextBox
+     */
+    public String getUserText()
+    {
+        return userTextBox.getText().trim();
+    }
 
+    /**
+     * @return the tooltipTextBox
+     */
+    public String getPasswordText()
+    {
+        return passwordTextBox.getText().trim();
+    }
     /**
      * {@inheritDoc}
      *

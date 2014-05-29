@@ -58,9 +58,9 @@ public class AlfrescoResourceReferenceParserWizardStep extends ResourceReference
     {
         EntityConfig entityConfig = getData().getData();
         if (entityConfig instanceof LinkConfig) {
-            return AlfrescoWizardStep.LINK_SELECTOR.toString();
+            return AlfrescoWizardStep.CREDENTIAL_GETTER.toString();
         } else if (entityConfig instanceof ImageConfig) {
-            return AlfrescoWizardStep.IMAGE_SELECTOR.toString();
+            return AlfrescoWizardStep.CREDENTIAL_GETTER.toString();
         } else {
             return super.getNextStep();
         }
