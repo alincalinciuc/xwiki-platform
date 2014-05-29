@@ -47,4 +47,9 @@ public interface AlfrescoService extends RemoteService
      * @return the parent of the specified Alfresco entity
      */
     AlfrescoEntity getParent(EntityReference childReference);
+    /**
+     * @param ticket the Alfresco entity whose parent needs to be retrieved
+     * @return the parent of the specified Alfresco entity
+     */
+    Boolean hasValidTicket(String ticket);
 }

@@ -40,6 +40,8 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReference;
 import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReferenceParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 
 /**
  * Default {@link AlfrescoService} implementation based on the REST service.
@@ -89,6 +91,11 @@ public class DefaultAlfrescoService implements AlfrescoService
     @Inject
     @Named("url")
     private NodeReferenceParser urlNodeReferenceParser;
+    /**
+     * The component used to parse the ticket response.
+     */
+    @Inject
+    private AlfrescoTokenManager ticketManager;
 
     @Override
     public List<AlfrescoEntity> getChildren(final EntityReference parentReference)
@@ -141,7 +148,22 @@ public class DefaultAlfrescoService implements AlfrescoService
             throw new RuntimeException("Failed to request the parent", e);
         }
     }
-
+    @Override
+    public Boolean hasValidTicket(String ticket1) {
+        String ticket = null;
+        //get ticket from DB
+        AlfrescoTiket dbTiket = ticketManager.getTicket();
+        //if there is a ticket for current user,use it
+        if (dbTiket != null) {
+            ticket = dbTiket.getTiket();
+        }
+        if (ticket != null) {
+            if (ticketManager.validateAuthenticationTicket(ticket)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Creates a node reference from the given entity reference.
      * 

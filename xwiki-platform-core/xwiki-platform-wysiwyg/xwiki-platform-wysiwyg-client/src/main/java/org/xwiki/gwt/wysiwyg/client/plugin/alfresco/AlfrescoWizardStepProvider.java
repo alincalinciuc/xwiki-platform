@@ -23,6 +23,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStepProvider;
@@ -40,6 +41,8 @@ import org.xwiki.gwt.wysiwyg.client.wiki.WikiServiceAsync;
  */
 public class AlfrescoWizardStepProvider implements WizardStepProvider
 {
+    private Boolean waitTicket = true;
+    private Boolean hasTicket = false;
     /**
      * Available wizard steps.
      */
@@ -127,7 +130,26 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
         WizardStep step = null;
         switch (requestedStep) {
             case CREDENTIAL_GETTER:
-                step = createCredentialGetterStep();
+                alfrescoService.hasValidTicket("", new AsyncCallback<Boolean>()
+                {
+                    public void onFailure(Throwable caught)
+                    {
+                        waitTicket = false;
+                    }
+
+                    public void onSuccess(Boolean has)
+                    {
+                        waitTicket = false;
+                        hasTicket = has;
+                    }
+                });
+                int i = 0;
+                while (waitTicket) { i = 1; }
+                if (hasTicket) {
+                    step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
+                } else {
+                    step = createCredentialGetterStep();
+                }
                 break;
             case RESOURCE_REFERENCE_PARSER:
                 step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
@@ -159,7 +181,7 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
     {
         AlfrescoCredentialGetterWizardStep credentialsSelector = new AlfrescoCredentialGetterWizardStep();
         credentialsSelector.setStepTitle("Login to alfresco");
-        credentialsSelector.setNextStep(AlfrescoWizardStep.LINK_SELECTOR.toString());
+        credentialsSelector.setNextStep(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString());
         credentialsSelector.setValidDirections(EnumSet.of(NavigationDirection.NEXT, NavigationDirection.FINISH));
         credentialsSelector.setDirectionName(NavigationDirection.NEXT, "Login Alfresco");
         credentialsSelector.setDirectionName(NavigationDirection.FINISH, Strings.INSTANCE.linkCreateLinkButton());

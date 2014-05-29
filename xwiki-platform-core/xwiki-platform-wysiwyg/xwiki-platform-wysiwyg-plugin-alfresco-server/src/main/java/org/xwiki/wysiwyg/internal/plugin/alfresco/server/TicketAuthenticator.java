@@ -102,7 +102,6 @@ public class TicketAuthenticator implements Authenticator
     @Override
     public void authenticate(HttpRequestBase request)
     {
-        logger.error("Authenticating");
         String ticket = null;
         //get ticket from DB
         AlfrescoTiket dbTiket = ticketManager.getTicket();

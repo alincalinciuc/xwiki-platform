@@ -81,8 +81,8 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         Label passwordLabel = new Label("Alfresco Password");
         display().addStyleName(DEFAULT_STYLE_NAME);
         display().add(userLabel);
-        display().add(passwordLabel);
         display().add(userTextBox);
+        display().add(passwordLabel);
         display().add(passwordTextBox);
     }
 
@@ -101,6 +101,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         callback.onSuccess(null);
         setFocus();
     }
+
     /**
      * @return the labelTextBox
      */

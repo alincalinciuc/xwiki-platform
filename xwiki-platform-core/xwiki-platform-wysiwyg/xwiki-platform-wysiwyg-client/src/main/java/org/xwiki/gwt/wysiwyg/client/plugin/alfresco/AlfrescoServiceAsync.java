@@ -47,4 +47,11 @@ public interface AlfrescoServiceAsync
      * @param callback the object to be notified when the parent is available
      */
     void getParent(EntityReference childReference, AsyncCallback<AlfrescoEntity> callback);
+    /**
+     * Retrieve the parent of the specified Alfresco entity.
+     *
+     * @param ticket the Alfresco entity whose parent needs to be retrieved
+     * @param callback the object to be notified when the parent is available
+     */
+    void hasValidTicket(String ticket, AsyncCallback<Boolean> callback);
 }
