@@ -41,7 +41,6 @@ import org.xwiki.gwt.wysiwyg.client.wiki.WikiServiceAsync;
  */
 public class AlfrescoWizardStepProvider implements WizardStepProvider
 {
-    private Boolean waitTicket = true;
     private Boolean hasTicket = false;
     /**
      * Available wizard steps.
@@ -134,17 +133,13 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
                 {
                     public void onFailure(Throwable caught)
                     {
-                        waitTicket = false;
+                        //waitTicket = false;
                     }
-
                     public void onSuccess(Boolean has)
                     {
-                        waitTicket = false;
                         hasTicket = has;
                     }
                 });
-                int i = 0;
-                while (waitTicket) { i = 1; }
                 if (hasTicket) {
                     step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
                 } else {
