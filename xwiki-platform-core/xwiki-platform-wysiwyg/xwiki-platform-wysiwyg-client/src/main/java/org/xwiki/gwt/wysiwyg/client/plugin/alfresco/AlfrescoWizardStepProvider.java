@@ -130,22 +130,22 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
                 step = createCredentialGetterStep();
                 break;
             case RESOURCE_REFERENCE_PARSER:
-                step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
+                step = createCredentialGetterStep();
                 break;
             case LINK_SELECTOR:
-                step = createLinkSelectorStep();
+                step = createCredentialGetterStep();
                 break;
             case LINK_SETTINGS:
-                step = createLinkSettingsStep();
+                step = createCredentialGetterStep();
                 break;
             case IMAGE_SELECTOR:
-                step = createImageSelectorStep();
+                step = createCredentialGetterStep();
                 break;
             case IMAGE_SETTINGS:
-                step = createImageSettingsStep();
+                step = createCredentialGetterStep();
                 break;
             case RESOURCE_REFERENCE_SERIALIZER:
-                step = createResourceReferenceSerializerStep();
+                step = createCredentialGetterStep();
                 break;
             default:
         }
