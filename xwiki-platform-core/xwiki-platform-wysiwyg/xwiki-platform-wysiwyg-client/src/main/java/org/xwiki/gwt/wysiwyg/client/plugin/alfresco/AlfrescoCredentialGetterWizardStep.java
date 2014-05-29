@@ -30,6 +30,7 @@ import org.xwiki.gwt.user.client.ui.wizard.SourcesNavigationEvents;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
+import org.xwiki.gwt.wysiwyg.client.Strings;
 
 /**
  * Wizard step that selects an Alfresco entity.
@@ -77,8 +78,11 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      */
     public AlfrescoCredentialGetterWizardStep()
     {
-
+        Label userLabel = new Label("Alfresco Username");
+        Label passwordLabel = new Label("Alfresco Password");
         display().addStyleName(DEFAULT_STYLE_NAME);
+        display().add(userLabel);
+        display().add(passwordLabel);
         display().add(userTextBox);
         display().add(passwordTextBox);
     }
@@ -91,9 +95,9 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     @SuppressWarnings("unchecked")
     public void init(Object data, final AsyncCallback< ? > callback)
     {
-        credentials = (AlfrescoCredentials) data;
-        userTextBox.setText(credentials.getUsername());
-        passwordTextBox.setText(credentials.getPassword());
+        //credentials = (AlfrescoCredentials) data;
+        //userTextBox.setText(credentials.getUsername());
+        //passwordTextBox.setText(credentials.getPassword());
         hideErrors();
         callback.onSuccess(null);
         setFocus();
