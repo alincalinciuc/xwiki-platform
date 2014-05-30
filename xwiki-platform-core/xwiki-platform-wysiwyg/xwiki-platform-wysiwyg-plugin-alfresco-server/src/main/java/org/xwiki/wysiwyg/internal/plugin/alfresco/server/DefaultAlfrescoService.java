@@ -197,14 +197,16 @@ public class DefaultAlfrescoService implements AlfrescoService
                     {
                         public String read(InputStream content)
                         {
+                            logger.error("Response:" + content.toString());
                             return responseParser.parseAuthTicket(content);
                         }
                     });
+            logger.error("Myticket:" + myTicket);
             ticketManager.setTicket(myTicket);
+            logger.error("Myticke22:" + myTicket);
             return myTicket;
         } catch (Exception e) {
-            logger.error("ANDREI11:" + e.getMessage());
-            return null;
+            throw new RuntimeException("Failed to request the authentication ticket.", e);
         }
     }
     /**
