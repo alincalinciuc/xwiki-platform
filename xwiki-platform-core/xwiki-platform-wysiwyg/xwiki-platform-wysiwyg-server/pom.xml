@@ -55,6 +55,12 @@
           <artifactId>xwiki-platform-wysiwyg-plugin-alfresco-server</artifactId>
           <version>${project.version}</version>
       </dependency>
+      <dependency>
+          <groupId>org.json</groupId>
+          <artifactId>json</artifactId>
+          <version>20090211</version>
+          <scope>provided</scope>
+      </dependency>
     <!-- XWiki dependencies -->
     <dependency>
       <groupId>org.xwiki.commons</groupId>

@@ -173,31 +173,4 @@ public class TicketAuthenticator implements Authenticator
             throw new RuntimeException("Failed to request the authentication ticket.", e);
         }
     }
-
-    /**
-     * @param user the error message to display.
-     * @param password the error message to display.
-     * @return the authentication ticket
-     */
-    public String getAuthenticationTicket(String user, String password)
-    {
-        try {
-            String loginURL = configuration.getServerURL() + APP_LINK;
-            JSONObject content = new JSONObject();
-            content.put(APP_USER, user);
-            content.put(APP_PASSWORD, password);
-            String myTicket = httpClient.doPost(loginURL, content.toString(), APP_ENCODING,
-                    new ResponseHandler<String>()
-                    {
-                        public String read(InputStream content)
-                        {
-                            return responseParser.parseAuthTicket(content);
-                        }
-                    });
-            ticketManager.setTicket(myTicket);
-            return myTicket;
-        } catch (Exception e) {
-            return null;
-        }
-    }
 }
