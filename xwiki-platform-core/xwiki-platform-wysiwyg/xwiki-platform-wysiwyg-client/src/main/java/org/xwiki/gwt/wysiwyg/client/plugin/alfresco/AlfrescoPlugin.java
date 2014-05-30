@@ -182,7 +182,7 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
             imageConfig = new ImageConfig();
             imageConfig.setAltText(getTextArea().getDocument().getSelection().getRangeAt(0).toString());
         }
-        getWizard().start(AlfrescoWizardStep.CREDENTIAL_GETTER.toString(), createEntityLink(imageConfig));
+        getWizard().start(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString(), createEntityLink(imageConfig));
     }
 
     /**
