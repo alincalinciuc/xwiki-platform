@@ -132,9 +132,9 @@ public class DefaultAlfrescoResponseParser implements AlfrescoResponseParser
                     + "/content/thumbnails/doclib");
             } else {    
                 // transform document url to share page
-                String urlDoc = configuration.getServerURL() +
-                        "/share/page/document-details?nodeRef=workspace:/" +
-                        nodePath.substring(9);
+                String urlDoc = configuration.getServerURL()
+                        + "/share/page/document-details?nodeRef=workspace:/"
+                        + nodePath.substring(9);
                 // Document URL.
                 entity.setUrl(urlDoc);
             }
