@@ -54,4 +54,12 @@ public interface AlfrescoServiceAsync
      * @param callback the object to be notified when the parent is available
      */
     void hasValidTicket(String ticket, AsyncCallback<Boolean> callback);
+    /**
+     * Retrieve the parent of the specified Alfresco entity.
+     *
+     * @param user the Alfresco entity whose parent needs to be retrieved
+     * @param password the Alfresco entity whose parent needs to be retrieved
+     * @param callback the object to be notified when the parent is available
+     */
+    void doAuthenticate(String user,String password, AsyncCallback<Boolean> callback);
 }

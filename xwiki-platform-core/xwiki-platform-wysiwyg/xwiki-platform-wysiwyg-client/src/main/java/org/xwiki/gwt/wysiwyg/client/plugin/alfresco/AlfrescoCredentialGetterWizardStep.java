@@ -140,6 +140,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     public void onSubmit(AsyncCallback<Boolean> callback)
     {
         if (validate()) {
+
             saveForm();
             callback.onSuccess(true);
             return;

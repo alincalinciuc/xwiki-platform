@@ -158,4 +158,29 @@ public class TicketAuthenticator implements Authenticator
             throw new RuntimeException("Failed to request the authentication ticket.", e);
         }
     }
+
+    /**
+     * @return the authentication ticket
+     */
+    public String getAuthenticationTicket(String user,String password)
+    {
+        try {
+            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
+            JSONObject content = new JSONObject();
+            content.put("username", user);
+            content.put("password", password);
+            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
+                    new ResponseHandler<String>()
+                    {
+                        public String read(InputStream content)
+                        {
+                            return responseParser.parseAuthTicket(content);
+                        }
+                    });
+            ticketManager.setTicket(myTicket);
+            return myTicket;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

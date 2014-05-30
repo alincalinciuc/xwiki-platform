@@ -30,18 +30,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.xwiki.component.annotation.Component;
+import org.xwiki.component.manager.ComponentManager;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.gwt.wysiwyg.client.wiki.EntityReference;
 import org.xwiki.gwt.wysiwyg.client.wiki.URIReference;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
-import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReference;
-import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReferenceParser;
-import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
+import org.xwiki.wysiwyg.plugin.alfresco.server.*;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 
 /**
  * Default {@link AlfrescoService} implementation based on the REST service.
@@ -96,6 +91,16 @@ public class DefaultAlfrescoService implements AlfrescoService
      */
     @Inject
     private AlfrescoTokenManager ticketManager;
+    /**
+     * The component used to lookup the authenticator.
+     */
+    @Inject
+    private ComponentManager componentManager;
+    /**
+     * The component used to lookup the authenticator.
+     */
+    @Inject
+    private TicketAuthenticator Auth;
 
     @Override
     public List<AlfrescoEntity> getChildren(final EntityReference parentReference)
@@ -163,6 +168,11 @@ public class DefaultAlfrescoService implements AlfrescoService
             }
         }
         return false;
+    }
+    @Override
+    public Boolean doAuthenticate(String user,String password) {
+        String tiket = Auth.getAuthenticationTicket(user, password);
+        return (tiket != null);
     }
     /**
      * Creates a node reference from the given entity reference.
