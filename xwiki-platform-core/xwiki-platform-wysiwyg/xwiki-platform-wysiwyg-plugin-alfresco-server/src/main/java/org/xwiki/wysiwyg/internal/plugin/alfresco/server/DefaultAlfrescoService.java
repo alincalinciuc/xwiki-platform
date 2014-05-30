@@ -29,7 +29,6 @@ import java.util.Map.Entry;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
@@ -174,40 +173,8 @@ public class DefaultAlfrescoService implements AlfrescoService
     @Override
     public Boolean doAuthenticate(String user, String password) {
         logger.error("ANDREI:" + user + "-" + password);
-        String tiket = getAuthenticationTicket(user, password);
+        String tiket = ticketManager.getAuthenticationTicket(user, password);
         return (tiket != null);
-    }
-
-    /**
-     * @param user the error message to display.
-     * @param password the error message to display.
-     * @return the authentication ticket
-     */
-    private String getAuthenticationTicket(String user, String password)
-    {
-        try {
-            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
-            logger.error("LOGINURL:" + loginURL);
-            JSONObject content = new JSONObject();
-            content.put("username", user);
-            content.put("password", password);
-            logger.error("CONTENTRR:" + content.toString());
-            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
-                    new ResponseHandler<String>()
-                    {
-                        public String read(InputStream content)
-                        {
-                            logger.error("Response:" + content.toString());
-                            return responseParser.parseAuthTicket(content);
-                        }
-                    });
-            logger.error("Myticket:" + myTicket);
-            ticketManager.setTicket(myTicket);
-            logger.error("Myticke22:" + myTicket);
-            return myTicket;
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to request the authentication ticket.", e);
-        }
     }
     /**
      * Creates a node reference from the given entity reference.

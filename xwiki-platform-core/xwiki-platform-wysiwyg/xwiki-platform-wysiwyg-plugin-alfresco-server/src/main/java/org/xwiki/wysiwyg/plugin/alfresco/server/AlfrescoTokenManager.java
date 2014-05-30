@@ -45,4 +45,10 @@ public interface AlfrescoTokenManager
      *
      */
     Boolean validateAuthenticationTicket(String ticket);
+    /**
+     * @param user the error message to display.
+     * @param password the error message to display.
+     * @return the authentication ticket
+     */
+    String getAuthenticationTicket(String user, String password);
 }

@@ -19,7 +19,6 @@
  */
 package org.xwiki.wysiwyg.server.internal.plugin.alfresco;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +26,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
@@ -41,9 +39,6 @@ import org.xwiki.model.reference.DocumentReference;
 import org.xwiki.model.reference.SpaceReference;
 import org.xwiki.model.reference.WikiReference;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
-import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.server.wiki.EntityReferenceConverter;
 
@@ -70,21 +65,6 @@ public class XWikiAlfrescoService implements AlfrescoService
      * The object used to convert between client references and server references.
      */
     private final EntityReferenceConverter entityReferenceConverter = new EntityReferenceConverter();
-    /**
-     * The component that controls the Alfresco access configuration.
-     */
-    @Inject
-    private AlfrescoConfiguration configuration;
-    /**
-     * The HTTP client used to make REST requests to Alfresco.
-     */
-    @Inject
-    private SimpleHttpClient httpClient;
-    /**
-     * The object used to parse the responses received for Alfresco REST requests.
-     */
-    @Inject
-    private AlfrescoResponseParser responseParser;
     /**
      * The object used to parse the responses received for Alfresco REST requests.
      */
@@ -151,41 +131,10 @@ public class XWikiAlfrescoService implements AlfrescoService
     @Override
     public Boolean doAuthenticate(String user, String password) {
         logger.error("ANDREI:" + user + "-" + password);
-        String tiket = getAuthenticationTicket(user, password);
+        String tiket = ticketManager.getAuthenticationTicket(user, password);
         return (tiket != null);
     }
 
-    /**
-     * @param user the error message to display.
-     * @param password the error message to display.
-     * @return the authentication ticket
-     */
-    private String getAuthenticationTicket(String user, String password)
-    {
-        try {
-            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
-            JSONObject content = new JSONObject();
-            logger.error("LOGINURL:" + loginURL);
-            content.put("username", user);
-            content.put("password", password);
-            logger.error("CONTENTRR:" + content.toString());
-            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
-                    new SimpleHttpClient.ResponseHandler<String>()
-                    {
-                        public String read(InputStream content)
-                        {
-                            logger.error("Response:" + content.toString());
-                            return responseParser.parseAuthTicket(content);
-                        }
-                    });
-            logger.error("Myticket:" + myTicket);
-            ticketManager.setTicket(myTicket);
-            logger.error("Myticke22:" + myTicket);
-            return myTicket;
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to request the authentication ticket.", e);
-        }
-    }
     /**
      * @param entityReference an entity reference
      * @return the path to the specified entity reference

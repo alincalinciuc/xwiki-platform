@@ -27,8 +27,8 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.json.JSONObject;
 import org.slf4j.Logger;
-import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xwiki.component.annotation.Component;
 
@@ -36,15 +36,13 @@ import com.xpn.xwiki.XWikiContext;
 import com.xpn.xwiki.XWikiException;
 import com.xpn.xwiki.store.XWikiHibernateBaseStore;
 import com.xpn.xwiki.store.XWikiStoreInterface;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
-import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
-import org.xwiki.xml.EntityResolver;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
 
 import javax.inject.Provider;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.util.AbstractMap;
 import java.util.Collections;
@@ -83,16 +81,18 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
     @Inject
     private AlfrescoConfiguration configuration;
     /**
-     * The component used to resolve XML entities.
-     */
-    @Inject
-    private EntityResolver entityResolver;
-    /**
      * The component used to request the authentication ticket.
      */
     @Inject
     @Named("noauth")
     private SimpleHttpClient httpClient;
+
+    /**
+     * The object used to parse the responses received for Alfresco REST requests.
+     */
+    @Inject
+    private AlfrescoResponseParser responseParser;
+
 
     @Override
     public void setTicket(String atiket) {
@@ -167,7 +167,7 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
             {
                 public String read(InputStream content)
                 {
-                    NodeList ticket1 = parseXML(content).getElementsByTagName("ticket");
+                    NodeList ticket1 = responseParser.parseXML(content).getElementsByTagName("ticket");
                     if (ticket1.getLength() > 0) {
                         return TRUE_PARAM;
                     }
@@ -179,21 +179,32 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
             throw new RuntimeException("Failed to validate the authentication ticket.", e);
         }
     }
-    /**
-     * Parses the given XML input stream.
-     *
-     * @param xml the XML stream to be parsed
-     * @return the DOM document corresponding to the XML input stream
-     */
-    private Document parseXML(InputStream xml)
+    @Override
+    public String getAuthenticationTicket(String user, String password)
     {
         try {
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            documentBuilder.setEntityResolver(entityResolver);
-            return documentBuilder.parse(xml);
+            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
+            logger.error("LOGINURL:" + loginURL);
+            JSONObject content = new JSONObject();
+            content.put("username", user);
+            content.put("password", password);
+            logger.error("CONTENTRR:" + content.toString());
+            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
+                    new SimpleHttpClient.ResponseHandler<String>()
+                    {
+                        public String read(InputStream content)
+                        {
+                            logger.error("Response:" + content.toString());
+                            return responseParser.parseAuthTicket(content);
+                        }
+                    });
+            logger.error("Myticket:" + myTicket);
+            this.setTicket(myTicket);
+            logger.error("Myticke22:" + myTicket);
+            return myTicket;
         } catch (Exception e) {
-            throw new RuntimeException("Failed to parse XML response.", e);
+            e.printStackTrace();
+            return null;
         }
     }
     private XWikiContext getXWikiContext() {

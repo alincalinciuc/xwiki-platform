@@ -163,7 +163,7 @@ public class DefaultAlfrescoResponseParser implements AlfrescoResponseParser
      * @param xml the XML stream to be parsed
      * @return the DOM document corresponding to the XML input stream
      */
-    private Document parseXML(InputStream xml)
+    public Document parseXML(InputStream xml)
     {
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();

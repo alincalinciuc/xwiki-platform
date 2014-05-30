@@ -22,6 +22,7 @@ package org.xwiki.wysiwyg.plugin.alfresco.server;
 import java.io.InputStream;
 import java.util.List;
 
+import org.w3c.dom.Document;
 import org.xwiki.component.annotation.ComponentRole;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
 
@@ -56,4 +57,11 @@ public interface AlfrescoResponseParser
      * @return the list of child entities
      */
     List<AlfrescoEntity> parseChildren(InputStream responseStream);
+    /**
+     * Parses the given XML input stream.
+     *
+     * @param xml the XML stream to be parsed
+     * @return the DOM document corresponding to the XML input stream
+     */
+    Document parseXML(InputStream xml);
 }
