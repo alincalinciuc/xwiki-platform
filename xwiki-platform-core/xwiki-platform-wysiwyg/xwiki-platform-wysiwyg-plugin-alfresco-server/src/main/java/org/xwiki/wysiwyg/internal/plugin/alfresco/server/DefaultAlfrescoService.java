@@ -187,9 +187,11 @@ public class DefaultAlfrescoService implements AlfrescoService
     {
         try {
             String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
+            logger.error("LOGINURL:" + loginURL);
             JSONObject content = new JSONObject();
             content.put("username", user);
             content.put("password", password);
+            logger.error("CONTENTRR:" + content.toString());
             String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
                     new ResponseHandler<String>()
                     {
