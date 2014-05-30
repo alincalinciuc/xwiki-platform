@@ -158,7 +158,7 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
      */
     private WizardStep createCredentialGetterStep()
     {
-        AlfrescoCredentialGetterWizardStep credentialsSelector = new AlfrescoCredentialGetterWizardStep();
+        AlfrescoCredentialGetterWizardStep credentialsSelector = new AlfrescoCredentialGetterWizardStep(alfrescoService);
         credentialsSelector.setStepTitle("Login to alfresco");
         credentialsSelector.setNextStep(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString());
         credentialsSelector.setValidDirections(EnumSet.of(NavigationDirection.NEXT, NavigationDirection.FINISH));

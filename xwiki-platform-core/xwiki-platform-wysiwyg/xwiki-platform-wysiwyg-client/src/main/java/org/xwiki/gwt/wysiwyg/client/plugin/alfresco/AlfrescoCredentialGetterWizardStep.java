@@ -20,6 +20,8 @@
 package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import org.xwiki.gwt.user.client.FocusCommand;
 import org.xwiki.gwt.user.client.ui.VerticalResizePanel;
@@ -27,9 +29,6 @@ import org.xwiki.gwt.user.client.ui.wizard.AbstractInteractiveWizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListenerCollection;
 import org.xwiki.gwt.user.client.ui.wizard.SourcesNavigationEvents;
-
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.Label;
 
 /**
  * Wizard step that selects an Alfresco entity.
@@ -64,6 +63,12 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      */
     private AlfrescoCredentials credentials = new AlfrescoCredentials();
 
+
+    /**
+     * The service used to access an Alfresco content management system.
+     */
+    private AlfrescoServiceAsync alfrescoService;
+
     /**
      * Navigation listeners to be notified by navigation events from this step. It generates navigation to the next step
      * when an item is double clicked in the list, or enter key is pressed on a selected item.
@@ -75,8 +80,10 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      *
      * sdsdsdasdsas asasd
      */
-    public AlfrescoCredentialGetterWizardStep()
+    public AlfrescoCredentialGetterWizardStep(AlfrescoServiceAsync alfrescoService)
     {
+        this.alfrescoService = alfrescoService;
+
         Label userLabel = new Label("Alfresco Username");
         Label passwordLabel = new Label("Alfresco Password");
         display().addStyleName(DEFAULT_STYLE_NAME);
@@ -137,11 +144,27 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      *
      * @see AbstractInteractiveWizardStep#onSubmit(AsyncCallback)
      */
-    public void onSubmit(AsyncCallback<Boolean> callback)
+    public void onSubmit(final AsyncCallback<Boolean> callback)
     {
+        // first reset all error labels, consider everything's fine
+        hideErrors();
+        // validate and go to next step if everything's fine
         if (validate()) {
             saveForm();
-            callback.onSuccess(true);
+            // try to login
+            alfrescoService.doAuthenticate(credentials.getUsername(), credentials.getPassword(), new AsyncCallback<Boolean>() {
+                public void onFailure(Throwable caught) {
+                    displayLabelError("Invalid username or password");
+                    callback.onSuccess(false);
+                }
+
+                public void onSuccess(Boolean has) {
+                    if (!has)
+                        displayLabelError("Invalid username or password");
+                    callback.onSuccess(has);
+                }
+            });
+//            callback.onSuccess(true);
             return;
         }
         callback.onSuccess(false);
