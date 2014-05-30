@@ -201,7 +201,7 @@ public class DefaultAlfrescoService implements AlfrescoService
             ticketManager.setTicket(myTicket);
             return myTicket;
         } catch (Exception e) {
-            logger.error("ANDREI11:" + e);
+            logger.error("ANDREI11:" + e.getMessage());
             return null;
         }
     }

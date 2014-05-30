@@ -178,7 +178,7 @@ public class XWikiAlfrescoService implements AlfrescoService
             ticketManager.setTicket(myTicket);
             return myTicket;
         } catch (Exception e) {
-            logger.error("ANDREI111:" + e);
+            logger.error("ANDREI111:" + e.getMessage());
             return null;
         }
     }
