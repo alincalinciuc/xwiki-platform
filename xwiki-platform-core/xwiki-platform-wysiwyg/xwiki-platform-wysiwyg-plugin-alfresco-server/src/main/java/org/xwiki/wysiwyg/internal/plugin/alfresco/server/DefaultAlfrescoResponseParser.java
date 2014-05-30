@@ -19,15 +19,6 @@
  */
 package org.xwiki.wysiwyg.internal.plugin.alfresco.server;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -42,6 +33,14 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
 import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
 import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReferenceParser;
 import org.xwiki.xml.EntityResolver;
+
+import javax.inject.Inject;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Default implementation of {@link AlfrescoResponseParser}.
@@ -131,9 +130,13 @@ public class DefaultAlfrescoResponseParser implements AlfrescoResponseParser
                 // FIXME: The thumbnail service requires separate authentication.
                 entity.setPreviewURL(configuration.getServerURL() + "/alfresco/service/api/node/" + nodePath
                     + "/content/thumbnails/doclib");
-            } else {
+            } else {    
+                // transform document url to share page
+                String urlDoc = configuration.getServerURL() +
+                        "/share/page/document-details?nodeRef=workspace:/" +
+                        nodePath.substring(9);
                 // Document URL.
-                entity.setUrl(configuration.getServerURL() + "/alfresco/n/showDocDetails/" + nodePath);
+                entity.setUrl(urlDoc);
             }
         } else {
             // Space URL.
