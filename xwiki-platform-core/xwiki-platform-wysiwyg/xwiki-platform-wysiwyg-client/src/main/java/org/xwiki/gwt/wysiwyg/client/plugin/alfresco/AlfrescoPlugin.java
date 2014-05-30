@@ -19,6 +19,7 @@
  */
 package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import org.xwiki.gwt.user.client.Config;
 import org.xwiki.gwt.user.client.ui.rta.RichTextArea;
 import org.xwiki.gwt.user.client.ui.rta.cmd.Command;
@@ -89,6 +90,7 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
      */
     private final LinkConfigJSONSerializer linkConfigJSONSerializer = new LinkConfigJSONSerializer();
 
+    private AlfrescoServiceAsync alfrescoService = GWT.create(AlfrescoService.class);
     /**
      * Creates a new instance.
      * 
@@ -143,9 +145,28 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
      */
     public void link()
     {
-        LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
-        linkConfig.setType(LinkType.EXTERNAL);
-        getWizard().start(AlfrescoWizardStep.CREDENTIAL_GETTER.toString(), createEntityLink(linkConfig));
+        AsyncCallback callback = new AsyncCallback<Boolean>()
+        {
+            public void onFailure(Throwable caught)
+            {
+                //waitTicket = false;
+            }
+            public void onSuccess(Boolean has)
+            {
+                if (has) {
+                    LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
+                    linkConfig.setType(LinkType.EXTERNAL);
+                    getWizard().start(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString(),
+                            createEntityLink(linkConfig));
+                } else {
+                    LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
+                    linkConfig.setType(LinkType.EXTERNAL);
+                    getWizard().start(AlfrescoWizardStep.CREDENTIAL_GETTER.toString(),
+                            createEntityLink(linkConfig));
+                }
+            }
+        };
+        alfrescoService.hasValidTicket("", callback);
     }
 
     /**
@@ -223,7 +244,6 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
         if (wizard == null) {
             Image alfrescoIcon = new Image(AlfrescoImages.INSTANCE.alfrescoIcon());
             wizard = new Wizard(AlfrescoConstants.INSTANCE.wizardTitle(), alfrescoIcon);
-            AlfrescoServiceAsync alfrescoService = GWT.create(AlfrescoService.class);
             wizard.setProvider(new AlfrescoWizardStepProvider(wikiService, alfrescoService));
             wizard.addWizardListener(this);
         }

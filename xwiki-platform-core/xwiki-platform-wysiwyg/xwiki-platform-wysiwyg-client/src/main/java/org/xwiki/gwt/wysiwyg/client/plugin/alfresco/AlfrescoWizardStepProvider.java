@@ -23,8 +23,6 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStepProvider;
@@ -130,23 +128,7 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
         WizardStep step = null;
         switch (requestedStep) {
             case CREDENTIAL_GETTER:
-                alfrescoService.hasValidTicket("", new AsyncCallback<Boolean>()
-                {
-                    public void onFailure(Throwable caught)
-                    {
-                        //waitTicket = false;
-                    }
-                    public void onSuccess(Boolean has)
-                    {
-                        Window.alert("Primit:" + has);
-                        hasTicket = has;
-                    }
-                });
-                if (hasTicket) {
-                    step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
-                } else {
-                    step = createCredentialGetterStep();
-                }
+                step = createCredentialGetterStep();
                 break;
             case RESOURCE_REFERENCE_PARSER:
                 step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
