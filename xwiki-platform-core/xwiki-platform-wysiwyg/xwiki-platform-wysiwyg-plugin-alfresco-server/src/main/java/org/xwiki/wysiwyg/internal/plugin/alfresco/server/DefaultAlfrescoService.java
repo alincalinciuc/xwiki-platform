@@ -30,6 +30,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
@@ -97,6 +98,11 @@ public class DefaultAlfrescoService implements AlfrescoService
      */
     @Inject
     private AlfrescoTokenManager ticketManager;
+    /**
+     * The object used to parse the responses received for Alfresco REST requests.
+     */
+    @Inject
+    private Logger logger;
 
     @Override
     public List<AlfrescoEntity> getChildren(final EntityReference parentReference)
@@ -167,6 +173,7 @@ public class DefaultAlfrescoService implements AlfrescoService
     }
     @Override
     public Boolean doAuthenticate(String user, String password) {
+        logger.error("ANDREI:" + user + "-" + password);
         String tiket = getAuthenticationTicket(user, password);
         return (tiket != null);
     }
@@ -194,6 +201,7 @@ public class DefaultAlfrescoService implements AlfrescoService
             ticketManager.setTicket(myTicket);
             return myTicket;
         } catch (Exception e) {
+            logger.error("ANDREI11:" + e);
             return null;
         }
     }

@@ -28,6 +28,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
 import org.xwiki.component.annotation.Component;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
@@ -84,6 +85,11 @@ public class XWikiAlfrescoService implements AlfrescoService
      */
     @Inject
     private AlfrescoResponseParser responseParser;
+    /**
+     * The object used to parse the responses received for Alfresco REST requests.
+     */
+    @Inject
+    private Logger logger;
 
     @Override
     public List<AlfrescoEntity> getChildren(EntityReference clientParentReference)
@@ -144,6 +150,7 @@ public class XWikiAlfrescoService implements AlfrescoService
     }
     @Override
     public Boolean doAuthenticate(String user, String password) {
+        logger.error("ANDREI:" + user + "-" + password);
         String tiket = getAuthenticationTicket(user, password);
         return (tiket != null);
     }
@@ -171,6 +178,7 @@ public class XWikiAlfrescoService implements AlfrescoService
             ticketManager.setTicket(myTicket);
             return myTicket;
         } catch (Exception e) {
+            logger.error("ANDREI111:" + e);
             return null;
         }
     }
