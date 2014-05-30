@@ -29,8 +29,8 @@ import java.util.Map.Entry;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.json.JSONObject;
 import org.xwiki.component.annotation.Component;
-import org.xwiki.component.manager.ComponentManager;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.gwt.wysiwyg.client.wiki.EntityReference;
@@ -97,16 +97,6 @@ public class DefaultAlfrescoService implements AlfrescoService
      */
     @Inject
     private AlfrescoTokenManager ticketManager;
-    /**
-     * The component used to lookup the authenticator.
-     */
-    @Inject
-    private ComponentManager componentManager;
-    /**
-     * The component used to lookup the authenticator.
-     */
-    @Inject
-    private TicketAuthenticator auth;
 
     @Override
     public List<AlfrescoEntity> getChildren(final EntityReference parentReference)
@@ -177,8 +167,35 @@ public class DefaultAlfrescoService implements AlfrescoService
     }
     @Override
     public Boolean doAuthenticate(String user, String password) {
-        String tiket = auth.getAuthenticationTicket(user, password);
+        String tiket = getAuthenticationTicket(user, password);
         return (tiket != null);
+    }
+
+    /**
+     * @param user the error message to display.
+     * @param password the error message to display.
+     * @return the authentication ticket
+     */
+    private String getAuthenticationTicket(String user, String password)
+    {
+        try {
+            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
+            JSONObject content = new JSONObject();
+            content.put("user", user);
+            content.put("password", password);
+            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
+                    new ResponseHandler<String>()
+                    {
+                        public String read(InputStream content)
+                        {
+                            return responseParser.parseAuthTicket(content);
+                        }
+                    });
+            ticketManager.setTicket(myTicket);
+            return myTicket;
+        } catch (Exception e) {
+            return null;
+        }
     }
     /**
      * Creates a node reference from the given entity reference.
