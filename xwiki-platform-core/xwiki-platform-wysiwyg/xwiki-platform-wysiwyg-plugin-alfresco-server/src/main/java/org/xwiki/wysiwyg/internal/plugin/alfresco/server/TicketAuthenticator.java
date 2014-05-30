@@ -124,7 +124,7 @@ public class TicketAuthenticator implements Authenticator
         if (dbTiket != null) {
             ticket = dbTiket.getTiket();
         }
-        if (ticket != null) {
+        /*if (ticket != null) {
             if (!ticketManager.validateAuthenticationTicket(ticket)) {
                 //if ticket is not valid on alfresco, perform authentication
                 ticket = getAuthenticationTicket();
@@ -132,7 +132,7 @@ public class TicketAuthenticator implements Authenticator
         } else {
             //if there is no ticket in DB, perform authentication
             ticket = getAuthenticationTicket();
-        }
+        }*/
 
         // Add the ticket to the query string.
         URI uri = request.getURI();
