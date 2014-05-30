@@ -23,6 +23,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStep;
@@ -137,6 +138,7 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
                     }
                     public void onSuccess(Boolean has)
                     {
+                        Window.alert("Primit:" + has);
                         hasTicket = has;
                     }
                 });
