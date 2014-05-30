@@ -57,7 +57,22 @@ public class TicketAuthenticator implements Authenticator
      * The encoding used for query string parameters.
      */
     private static final String QUERY_STRING_ENCODING = "UTF-8";
-
+    /**
+     * The encoding used for query string parameters.
+     */
+    private static final String APP_ENCODING = "application/json; charset=UTF-8";
+    /**
+     * The encoding used for query string parameters.
+     */
+    private static final String APP_USER = "username";
+    /**
+     * The encoding used for query string parameters.
+     */
+    private static final String APP_PASSWORD = "password";
+    /**
+     * The encoding used for query string parameters.
+     */
+    private static final String APP_LINK = "/alfresco/service/api/login";
     /**
      * The authentication query string parameter.
      */
@@ -138,13 +153,13 @@ public class TicketAuthenticator implements Authenticator
     private String getAuthenticationTicket()
     {
         try {
-            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
+            String loginURL = configuration.getServerURL() + APP_LINK;
             JSONObject content = new JSONObject();
             //AuthDialog auth = new AuthDialog();
             //auth.show();
-            content.put("username", configuration.getUserName());
-            content.put("password", configuration.getPassword());
-            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
+            content.put(APP_USER, configuration.getUserName());
+            content.put(APP_PASSWORD, configuration.getPassword());
+            String myTicket = httpClient.doPost(loginURL, content.toString(), APP_ENCODING,
                 new ResponseHandler<String>()
                 {
                     public String read(InputStream content)
@@ -160,16 +175,18 @@ public class TicketAuthenticator implements Authenticator
     }
 
     /**
+     * @param user the error message to display.
+     * @param password the error message to display.
      * @return the authentication ticket
      */
-    public String getAuthenticationTicket(String user,String password)
+    public String getAuthenticationTicket(String user, String password)
     {
         try {
-            String loginURL = configuration.getServerURL() + "/alfresco/service/api/login";
+            String loginURL = configuration.getServerURL() + APP_LINK;
             JSONObject content = new JSONObject();
-            content.put("username", user);
-            content.put("password", password);
-            String myTicket = httpClient.doPost(loginURL, content.toString(), "application/json; charset=UTF-8",
+            content.put(APP_USER, user);
+            content.put(APP_PASSWORD, password);
+            String myTicket = httpClient.doPost(loginURL, content.toString(), APP_ENCODING,
                     new ResponseHandler<String>()
                     {
                         public String read(InputStream content)

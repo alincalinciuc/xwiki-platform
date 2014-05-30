@@ -65,7 +65,7 @@ public class XWikiAlfrescoService implements AlfrescoService
      * The component used to lookup the authenticator.
      */
     @Inject
-    private TicketAuthenticator Auth;
+    private TicketAuthenticator auth;
     /**
      * The object used to convert between client references and server references.
      */
@@ -129,8 +129,8 @@ public class XWikiAlfrescoService implements AlfrescoService
         return false;
     }
     @Override
-    public Boolean doAuthenticate(String user,String password) {
-        String tiket = Auth.getAuthenticationTicket(user, password);
+    public Boolean doAuthenticate(String user, String password) {
+        String tiket = auth.getAuthenticationTicket(user, password);
         return (tiket != null);
     }
     /**

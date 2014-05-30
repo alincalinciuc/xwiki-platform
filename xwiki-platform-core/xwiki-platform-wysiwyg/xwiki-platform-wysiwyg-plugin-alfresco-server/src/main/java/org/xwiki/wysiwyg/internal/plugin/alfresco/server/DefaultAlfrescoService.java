@@ -35,7 +35,13 @@ import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoEntity;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoService;
 import org.xwiki.gwt.wysiwyg.client.wiki.EntityReference;
 import org.xwiki.gwt.wysiwyg.client.wiki.URIReference;
-import org.xwiki.wysiwyg.plugin.alfresco.server.*;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoResponseParser;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoConfiguration;
+import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
+import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReference;
+import org.xwiki.wysiwyg.plugin.alfresco.server.NodeReferenceParser;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTiket;
+import org.xwiki.wysiwyg.plugin.alfresco.server.AlfrescoTokenManager;
 import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient.ResponseHandler;
 
 /**
@@ -100,7 +106,7 @@ public class DefaultAlfrescoService implements AlfrescoService
      * The component used to lookup the authenticator.
      */
     @Inject
-    private TicketAuthenticator Auth;
+    private TicketAuthenticator auth;
 
     @Override
     public List<AlfrescoEntity> getChildren(final EntityReference parentReference)
@@ -170,8 +176,8 @@ public class DefaultAlfrescoService implements AlfrescoService
         return false;
     }
     @Override
-    public Boolean doAuthenticate(String user,String password) {
-        String tiket = Auth.getAuthenticationTicket(user, password);
+    public Boolean doAuthenticate(String user, String password) {
+        String tiket = auth.getAuthenticationTicket(user, password);
         return (tiket != null);
     }
     /**

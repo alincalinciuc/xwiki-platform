@@ -61,5 +61,5 @@ public interface AlfrescoServiceAsync
      * @param password the Alfresco entity whose parent needs to be retrieved
      * @param callback the object to be notified when the parent is available
      */
-    void doAuthenticate(String user,String password, AsyncCallback<Boolean> callback);
+    void doAuthenticate(String user, String password, AsyncCallback<Boolean> callback);
 }

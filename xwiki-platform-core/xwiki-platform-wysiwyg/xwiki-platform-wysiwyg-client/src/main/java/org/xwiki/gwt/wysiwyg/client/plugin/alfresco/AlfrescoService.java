@@ -57,5 +57,5 @@ public interface AlfrescoService extends RemoteService
      * @param password the Alfresco entity whose parent needs to be retrieved
      * @return the parent of the specified Alfresco entity
      */
-    Boolean doAuthenticate(String user,String password);
+    Boolean doAuthenticate(String user, String password);
 }

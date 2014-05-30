@@ -78,7 +78,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     /**
      * Creates a new instance.
      *
-     * sdsdsdasdsas asasd
+     * @param alfrescoService the error message to display.
      */
     public AlfrescoCredentialGetterWizardStep(AlfrescoServiceAsync alfrescoService)
     {
@@ -91,6 +91,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         display().add(userTextBox);
         display().add(passwordLabel);
         display().add(passwordTextBox);
+        display().add(labelErrorLabel);
     }
 
     /**
@@ -153,19 +154,23 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
 
             saveForm();
             // try to login
-            alfrescoService.doAuthenticate(credentials.getUsername(), credentials.getPassword(), new AsyncCallback<Boolean>() {
-                public void onFailure(Throwable caught) {
-                    displayLabelError("Invalid username or password");
-                    callback.onSuccess(false);
-                }
+            alfrescoService.doAuthenticate(
+                    credentials.getUsername(),
+                    credentials.getPassword(),
+                    new AsyncCallback<Boolean>() {
+                        public void onFailure(Throwable caught) {
+                            displayLabelError("Invalid credentials");
+                            callback.onSuccess(false);
+                        }
 
-                public void onSuccess(Boolean has) {
-                    if (!has)
-                        displayLabelError("Invalid username or password");
-                    callback.onSuccess(has);
-                }
-            });
-//            callback.onSuccess(true);
+                        public void onSuccess(Boolean has) {
+                            if (!has) {
+                                displayLabelError("Invalid username or password");
+                            }
+                            callback.onSuccess(has);
+                        }
+                    }
+            );
             return;
         }
         callback.onSuccess(false);
