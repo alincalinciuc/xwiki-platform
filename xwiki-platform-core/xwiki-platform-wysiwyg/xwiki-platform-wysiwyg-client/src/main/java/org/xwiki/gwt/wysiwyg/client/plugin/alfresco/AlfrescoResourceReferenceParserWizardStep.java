@@ -47,6 +47,7 @@ public class AlfrescoResourceReferenceParserWizardStep extends ResourceReference
         super(wikiService);
 
         setValidDirections(EnumSet.of(NavigationDirection.NEXT));
+        Window.alert("INPARSER:-");
     }
 
     /**

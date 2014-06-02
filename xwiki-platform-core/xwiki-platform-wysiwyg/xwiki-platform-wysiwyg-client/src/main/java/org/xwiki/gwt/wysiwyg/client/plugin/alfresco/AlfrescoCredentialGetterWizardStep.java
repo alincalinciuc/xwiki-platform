@@ -20,6 +20,8 @@
 package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
 import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -251,7 +253,15 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         credentials.setUsername(userTextBox.getText().trim());
         credentials.setPassword(passwordTextBox.getText().trim());
     }
-
+    /**
+     * @return the default navigation direction, to be fired automatically when enter is hit in an input in the form of
+     *         this configuration wizard step. To be overridden by subclasses to provide the specific direction to be
+     *         followed.
+     */
+    public NavigationListener.NavigationDirection getDefaultDirection()
+    {
+        return NavigationListener.NavigationDirection.NEXT;
+    }
     /**
      * {@inheritDoc}
      *
@@ -271,6 +281,20 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     {
         navigationListeners.remove(listener);
     }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see com.google.gwt.event.dom.client.KeyPressHandler#onKeyPress(com.google.gwt.event.dom.client.KeyPressEvent)
+     */
+    public void onKeyPress(KeyPressEvent event)
+    {
+        if (event.getNativeEvent().getKeyCode() == KeyCodes.KEY_ENTER) {
+            // fire the event for the default direction
+            navigationListeners.fireNavigationEvent(getDefaultDirection());
+        }
+    }
+
     /**
      * @return the data configured by this wizard step
      */
