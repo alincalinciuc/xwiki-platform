@@ -173,6 +173,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                         }
                     }
             );
+            return;
         }
         callback.onSuccess(false);
     }
