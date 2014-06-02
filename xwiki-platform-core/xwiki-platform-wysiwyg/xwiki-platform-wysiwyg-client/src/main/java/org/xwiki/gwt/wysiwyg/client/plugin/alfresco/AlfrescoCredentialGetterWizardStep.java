@@ -167,16 +167,17 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                         public void onFailure(Throwable caught) {
                             displayLabelError("Canot access server");
                         }
+
                         public void onSuccess(Boolean has) {
                             if (!has) {
                                 displayLabelError("Invalid username or password");
                             } else {
                                 saveForm(callback);
+                                return;
                             }
                         }
                     }
             );
-            return;
         } else {
             callback.onSuccess(false);
         }
