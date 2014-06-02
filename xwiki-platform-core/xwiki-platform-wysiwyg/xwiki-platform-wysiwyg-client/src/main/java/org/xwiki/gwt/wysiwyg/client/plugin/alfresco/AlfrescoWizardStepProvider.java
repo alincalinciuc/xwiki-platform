@@ -40,7 +40,6 @@ import org.xwiki.gwt.wysiwyg.client.wiki.WikiServiceAsync;
  */
 public class AlfrescoWizardStepProvider implements WizardStepProvider
 {
-    private Boolean hasTicket = false;
     /**
      * Available wizard steps.
      */

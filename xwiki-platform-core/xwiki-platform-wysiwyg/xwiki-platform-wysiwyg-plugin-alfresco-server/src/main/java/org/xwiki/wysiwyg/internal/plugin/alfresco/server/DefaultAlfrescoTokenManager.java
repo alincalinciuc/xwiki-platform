@@ -114,6 +114,7 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
                         session.delete(tiket);
                     }
                     session.save(newTiket);
+                    logger.error("ANDREI:SAVED-" + newTiket.getTiket());
                     return null;
                 }
             });
