@@ -168,15 +168,13 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                         public void onSuccess(Boolean has) {
                             if (!has) {
                                 displayLabelError("Invalid username or password");
-                            } else {
-                                callback.onSuccess(has);
                             }
+                            callback.onSuccess(has);
                         }
                     }
             );
-        } else {
-            callback.onSuccess(false);
         }
+        callback.onSuccess(false);
     }
 
     /**

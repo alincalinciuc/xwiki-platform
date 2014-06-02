@@ -45,3 +45,6 @@
 .xAlfrescoSelector .xPath-value {
   display: inline;
 }
+.xLinkConfig input[type=password]{
+    width: 100%;
+}
