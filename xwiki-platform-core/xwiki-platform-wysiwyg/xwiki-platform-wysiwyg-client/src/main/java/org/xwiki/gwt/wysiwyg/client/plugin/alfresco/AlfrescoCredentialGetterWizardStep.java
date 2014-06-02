@@ -92,6 +92,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         display().add(userTextBox);
         display().add(passwordLabel);
         display().add(passwordTextBox);
+        labelErrorLabel.addStyleName("xErrorMsg");
         display().add(labelErrorLabel);
     }
 
@@ -167,14 +168,15 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                         public void onSuccess(Boolean has) {
                             if (!has) {
                                 displayLabelError("Invalid username or password");
+                            } else {
+                                callback.onSuccess(has);
                             }
-                            callback.onSuccess(has);
                         }
                     }
             );
-            return;
+        } else {
+            callback.onSuccess(false);
         }
-        callback.onSuccess(false);
     }
 
     /**
