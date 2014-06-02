@@ -23,6 +23,7 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -153,30 +154,13 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      *
      * @see AbstractInteractiveWizardStep#onSubmit(AsyncCallback)
      */
-    public void onSubmit(final AsyncCallback<Boolean> callback)
+    public void onSubmit(AsyncCallback<Boolean> callback)
     {
         // first reset all error labels, consider everything's fine
         hideErrors();
         // validate and go to next step if everything's fine
         if (validate()) {
-            // try to login
-            alfrescoService.doAuthenticate(
-                    userTextBox.getText().trim(),
-                    passwordTextBox.getText().trim(),
-                    new AsyncCallback<Boolean>() {
-                        public void onFailure(Throwable caught) {
-                            displayLabelError("Canot access server");
-                        }
-
-                        public void onSuccess(Boolean has) {
-                            if (!has) {
-                                displayLabelError("Invalid username or password");
-                            } else {
-                                saveForm(callback);
-                            }
-                        }
-                    }
-            );
+            saveForm(callback);
         } else {
             callback.onSuccess(false);
         }
@@ -250,11 +234,30 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      * sdadsadsa.
      *
      */
-    protected void saveForm(AsyncCallback<Boolean> callback)
+    protected void saveForm(final AsyncCallback<Boolean> callback)
     {
         credentials.setUsername(userTextBox.getText().trim());
         credentials.setPassword(passwordTextBox.getText().trim());
-        callback.onSuccess(true);
+        // try to login
+        AsyncCallback loginCallback = new AsyncCallback<Boolean>() {
+            public void onFailure(Throwable caught) {
+                displayLabelError("Canot access server");
+            }
+
+            public void onSuccess(Boolean has) {
+                if (!has) {
+                    displayLabelError("Invalid username or password");
+                    callback.onSuccess(false);
+                    Window.alert("FAIL");
+                } else {
+                    Window.alert("SCCESSS");
+                    callback.onSuccess(true);
+                }
+            }
+        };
+        alfrescoService.doAuthenticate(
+                userTextBox.getText().trim(),
+                passwordTextBox.getText().trim(), loginCallback);
     }
     /**
      * @return the default navigation direction, to be fired automatically when enter is hit in an input in the form of
