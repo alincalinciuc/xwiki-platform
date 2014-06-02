@@ -159,29 +159,27 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         hideErrors();
         // validate and go to next step if everything's fine
         if (validate()) {
-
-            saveForm();
             // try to login
             alfrescoService.doAuthenticate(
-                    credentials.getUsername(),
-                    credentials.getPassword(),
+                    userTextBox.getText().trim(),
+                    passwordTextBox.getText().trim(),
                     new AsyncCallback<Boolean>() {
                         public void onFailure(Throwable caught) {
-                            displayLabelError("Invalid credentials");
-                            callback.onSuccess(false);
+                            displayLabelError("Canot access server");
                         }
-
                         public void onSuccess(Boolean has) {
                             if (!has) {
                                 displayLabelError("Invalid username or password");
+                            } else {
+                                saveForm(callback);
                             }
-                            callback.onSuccess(has);
                         }
                     }
             );
             return;
+        } else {
+            callback.onSuccess(false);
         }
-        callback.onSuccess(false);
     }
 
     /**
@@ -252,10 +250,11 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      * sdadsadsa.
      *
      */
-    protected void saveForm()
+    protected void saveForm(AsyncCallback<Boolean> callback)
     {
         credentials.setUsername(userTextBox.getText().trim());
         credentials.setPassword(passwordTextBox.getText().trim());
+        callback.onSuccess(true);
     }
     /**
      * @return the default navigation direction, to be fired automatically when enter is hit in an input in the form of

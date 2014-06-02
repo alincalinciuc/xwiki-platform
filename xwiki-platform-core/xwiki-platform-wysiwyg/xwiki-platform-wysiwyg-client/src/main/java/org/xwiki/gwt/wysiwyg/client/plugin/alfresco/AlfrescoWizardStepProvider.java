@@ -23,7 +23,6 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStepProvider;
@@ -132,7 +131,6 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
                 step = createCredentialGetterStep();
                 break;
             case RESOURCE_REFERENCE_PARSER:
-                Window.alert("is aici");
                 step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
                 break;
             case LINK_SELECTOR:
