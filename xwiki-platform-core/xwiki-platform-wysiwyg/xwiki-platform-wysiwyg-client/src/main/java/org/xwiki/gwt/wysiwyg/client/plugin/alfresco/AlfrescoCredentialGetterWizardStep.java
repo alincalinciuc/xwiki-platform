@@ -173,7 +173,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                                 displayLabelError("Invalid username or password");
                             } else {
                                 saveForm(callback);
-                                return;
                             }
                         }
                     }
