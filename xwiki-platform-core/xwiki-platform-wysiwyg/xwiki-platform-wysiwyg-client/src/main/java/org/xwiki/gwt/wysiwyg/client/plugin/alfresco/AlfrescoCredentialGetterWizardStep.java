@@ -22,6 +22,7 @@ package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
 import org.xwiki.gwt.user.client.FocusCommand;
 import org.xwiki.gwt.user.client.ui.VerticalResizePanel;
@@ -56,7 +57,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     /**
      * The text box to get the link tooltip.
      */
-    private final TextBox passwordTextBox = new TextBox();
+    private final PasswordTextBox passwordTextBox = new PasswordTextBox();
 
     /**
      * The credentials.
