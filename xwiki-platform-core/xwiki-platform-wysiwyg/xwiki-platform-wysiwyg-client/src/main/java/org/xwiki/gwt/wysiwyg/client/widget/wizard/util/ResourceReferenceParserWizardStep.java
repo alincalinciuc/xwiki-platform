@@ -19,6 +19,7 @@
  */
 package org.xwiki.gwt.wysiwyg.client.widget.wizard.util;
 
+import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.StringUtils;
 import org.xwiki.gwt.user.client.ui.wizard.AbstractAutoSubmitWizardStep;
 import org.xwiki.gwt.wysiwyg.client.wiki.EntityConfig;
@@ -60,6 +61,7 @@ public class ResourceReferenceParserWizardStep<T extends EntityConfig> extends
     @Override
     public void onSubmit(final AsyncCallback<Boolean> callback)
     {
+        Window.alert("Pre auto submiter:-");
         if (StringUtils.isEmpty(getData().getData().getReference())) {
             getData().getDestination().setEntityReference(getData().getOrigin().clone());
             callback.onSuccess(Boolean.TRUE);

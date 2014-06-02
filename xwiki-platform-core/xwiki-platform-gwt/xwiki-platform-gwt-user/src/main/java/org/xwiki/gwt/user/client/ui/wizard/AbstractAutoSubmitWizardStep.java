@@ -19,6 +19,7 @@
  */
 package org.xwiki.gwt.user.client.ui.wizard;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -104,6 +105,7 @@ public abstract class AbstractAutoSubmitWizardStep<T> extends AbstractNavigation
     @Override
     public void onSubmit(AsyncCallback<Boolean> async)
     {
+        Window.alert("Auto submitter:-");
         // Leave the input data unchanged by default.
         async.onSuccess(Boolean.TRUE);
     }

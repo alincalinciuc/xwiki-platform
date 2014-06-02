@@ -58,15 +58,16 @@ public class AlfrescoResourceReferenceParserWizardStep extends ResourceReference
     @Override
     public String getNextStep()
     {
-
         EntityConfig entityConfig = getData().getData();
-        Window.alert("ENT:-" + entityConfig.toString());
+        Window.alert("ENT:-" + entityConfig.getClass().getName());
         Window.alert("URL-" + entityConfig.getUrl());
         if (entityConfig instanceof LinkConfig) {
+            Window.alert("In LINK:-");
             return AlfrescoWizardStep.LINK_SELECTOR.toString();
         } else if (entityConfig instanceof ImageConfig) {
             return AlfrescoWizardStep.IMAGE_SELECTOR.toString();
         } else {
+            Window.alert("In Super next:-");
             return super.getNextStep();
         }
     }
