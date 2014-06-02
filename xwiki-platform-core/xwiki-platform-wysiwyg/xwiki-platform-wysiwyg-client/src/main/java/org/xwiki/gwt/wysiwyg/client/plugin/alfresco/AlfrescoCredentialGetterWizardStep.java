@@ -40,8 +40,8 @@ import org.xwiki.gwt.user.client.ui.wizard.SourcesNavigationEvents;
  * @version $Id$
  */
 
-public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizardStep implements SourcesNavigationEvents,
-        KeyPressHandler
+public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizardStep
+        implements SourcesNavigationEvents, KeyPressHandler
 {
     /**
      * The default style of the link configuration dialog.

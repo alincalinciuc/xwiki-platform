@@ -19,7 +19,6 @@
  */
 package org.xwiki.gwt.wysiwyg.client.widget.wizard.util;
 
-import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.StringUtils;
 import org.xwiki.gwt.user.client.ui.wizard.AbstractAutoSubmitWizardStep;
 import org.xwiki.gwt.wysiwyg.client.wiki.EntityConfig;
