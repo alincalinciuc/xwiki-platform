@@ -21,7 +21,6 @@ package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
 import java.util.EnumSet;
 
-import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.wysiwyg.client.plugin.alfresco.AlfrescoWizardStepProvider.AlfrescoWizardStep;
 import org.xwiki.gwt.wysiwyg.client.plugin.image.ImageConfig;
@@ -47,7 +46,6 @@ public class AlfrescoResourceReferenceParserWizardStep extends ResourceReference
         super(wikiService);
 
         setValidDirections(EnumSet.of(NavigationDirection.NEXT));
-        Window.alert("INPARSER:-");
     }
 
     /**
@@ -59,15 +57,13 @@ public class AlfrescoResourceReferenceParserWizardStep extends ResourceReference
     public String getNextStep()
     {
         EntityConfig entityConfig = getData().getData();
-        Window.alert("ENT:-" + entityConfig.getClass().getName());
-        Window.alert("URL-" + entityConfig.getUrl());
-        if (entityConfig instanceof LinkConfig) {
-            Window.alert("In LINK:-");
+        if (!entityConfig.getIsAuth()) {
+            return AlfrescoWizardStep.CREDENTIAL_GETTER.toString();
+        } else if (entityConfig instanceof LinkConfig) {
             return AlfrescoWizardStep.LINK_SELECTOR.toString();
         } else if (entityConfig instanceof ImageConfig) {
             return AlfrescoWizardStep.IMAGE_SELECTOR.toString();
         } else {
-            Window.alert("In Super next:-");
             return super.getNextStep();
         }
     }

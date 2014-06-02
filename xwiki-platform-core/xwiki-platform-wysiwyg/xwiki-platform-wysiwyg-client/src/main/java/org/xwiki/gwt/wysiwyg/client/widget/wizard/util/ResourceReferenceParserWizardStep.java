@@ -61,7 +61,6 @@ public class ResourceReferenceParserWizardStep<T extends EntityConfig> extends
     @Override
     public void onSubmit(final AsyncCallback<Boolean> callback)
     {
-        Window.alert("Pre auto submiter:-");
         if (StringUtils.isEmpty(getData().getData().getReference())) {
             getData().getDestination().setEntityReference(getData().getOrigin().clone());
             callback.onSuccess(Boolean.TRUE);

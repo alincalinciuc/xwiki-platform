@@ -23,6 +23,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener.NavigationDirection;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.WizardStepProvider;
@@ -131,6 +132,7 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
                 step = createCredentialGetterStep();
                 break;
             case RESOURCE_REFERENCE_PARSER:
+                Window.alert("is aici");
                 step = new AlfrescoResourceReferenceParserWizardStep(wikiService);
                 break;
             case LINK_SELECTOR:
@@ -161,10 +163,9 @@ public class AlfrescoWizardStepProvider implements WizardStepProvider
         AlfrescoCredentialGetterWizardStep credentialsSelector =
                 new AlfrescoCredentialGetterWizardStep(alfrescoService);
         credentialsSelector.setStepTitle("Login to alfresco");
-        credentialsSelector.setNextStep(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString());
-        credentialsSelector.setValidDirections(EnumSet.of(NavigationDirection.NEXT, NavigationDirection.FINISH));
+        credentialsSelector.setNextStep(AlfrescoWizardStep.LINK_SELECTOR.toString());
+        credentialsSelector.setValidDirections(EnumSet.of(NavigationDirection.NEXT));
         credentialsSelector.setDirectionName(NavigationDirection.NEXT, "Login to Alfresco");
-        credentialsSelector.setDirectionName(NavigationDirection.FINISH, Strings.INSTANCE.linkCreateLinkButton());
         return credentialsSelector;
     }
 

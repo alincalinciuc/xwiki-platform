@@ -22,6 +22,7 @@ package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -39,7 +40,8 @@ import org.xwiki.gwt.user.client.ui.wizard.SourcesNavigationEvents;
  * @version $Id$
  */
 
-public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizardStep implements SourcesNavigationEvents
+public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizardStep implements SourcesNavigationEvents,
+        KeyPressHandler
 {
     /**
      * The default style of the link configuration dialog.
@@ -91,6 +93,8 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
         Label passwordLabel = new Label("Alfresco Password");
         display().addStyleName(DEFAULT_STYLE_NAME);
         display().add(userLabel);
+        userTextBox.addKeyPressHandler(this);
+        passwordTextBox.addKeyPressHandler(this);
         display().add(userTextBox);
         display().add(passwordLabel);
         display().add(passwordTextBox);

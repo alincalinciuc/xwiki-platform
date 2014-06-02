@@ -21,6 +21,7 @@ package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
 import java.util.List;
 
+import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.FocusCommand;
 import org.xwiki.gwt.user.client.ui.ListBox;
 import org.xwiki.gwt.user.client.ui.ListItem;
@@ -98,7 +99,7 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
         super(new VerticalResizePanel());
 
         this.alfrescoService = alfrescoService;
-
+        Window.alert("Miesaj");
         FlowPanel pathContainer = new FlowPanel();
         pathContainer.setStyleName("xPath");
         pathContainer.add(new Label(AlfrescoConstants.INSTANCE.pathLabel()));

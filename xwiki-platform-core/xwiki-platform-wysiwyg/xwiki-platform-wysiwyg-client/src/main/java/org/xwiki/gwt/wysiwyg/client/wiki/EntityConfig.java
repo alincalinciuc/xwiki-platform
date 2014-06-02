@@ -37,6 +37,10 @@ public class EntityConfig implements IsSerializable
      * The entity URL.
      */
     private String url;
+    /**
+     * The entity auth.
+     */
+    private Boolean isAuth;
 
     /**
      * @return the string serialization of the entity reference
@@ -72,5 +76,19 @@ public class EntityConfig implements IsSerializable
     public void setUrl(String url)
     {
         this.url = url;
+    }
+    /**
+     * @return the entity URL
+     */
+    public Boolean getIsAuth() {
+        return isAuth;
+    }
+    /**
+     * Sets the entity URL.
+     *
+     * @param isAuth the new entity auth
+     */
+    public void setIsAuth(Boolean isAuth) {
+        this.isAuth = isAuth;
     }
 }
