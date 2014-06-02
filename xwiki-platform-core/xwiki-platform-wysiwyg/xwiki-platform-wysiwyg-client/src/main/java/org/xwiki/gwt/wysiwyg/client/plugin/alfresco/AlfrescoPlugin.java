@@ -153,16 +153,15 @@ public class AlfrescoPlugin extends AbstractPlugin implements WizardListener
             }
             public void onSuccess(Boolean has)
             {
+                LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
+                linkConfig.setType(LinkType.EXTERNAL);
+                EntityLink<EntityConfig> entLink = createEntityLink(linkConfig);
                 if (has) {
-                    LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
-                    linkConfig.setType(LinkType.EXTERNAL);
                     getWizard().start(AlfrescoWizardStep.RESOURCE_REFERENCE_PARSER.toString(),
-                            createEntityLink(linkConfig));
+                            entLink);
                 } else {
-                    LinkConfig linkConfig = linkConfigFactory.createLinkConfig();
-                    linkConfig.setType(LinkType.EXTERNAL);
                     getWizard().start(AlfrescoWizardStep.CREDENTIAL_GETTER.toString(),
-                            createEntityLink(linkConfig));
+                            entLink);
                 }
             }
         };
