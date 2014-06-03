@@ -89,7 +89,8 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     public AlfrescoCredentialGetterWizardStep(AlfrescoServiceAsync alfrescoService)
     {
         this.alfrescoService = alfrescoService;
-
+        Window.alert("NEW STEP GETTER");
+        Window.alert("AlfService=" + this.alfrescoService.toString());
         Label userLabel = new Label("Alfresco Username");
         Label passwordLabel = new Label("Alfresco Password");
         display().addStyleName(DEFAULT_STYLE_NAME);
@@ -111,6 +112,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     @SuppressWarnings("unchecked")
     public void init(Object data, final AsyncCallback< ? > callback)
     {
+        Window.alert("INIT GETTER");
         //credentials = (AlfrescoCredentials) data;
         //userTextBox.setText(credentials.getUsername());
         //passwordTextBox.setText(credentials.getPassword());
@@ -201,6 +203,8 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
 
     @Override
     public Object getResult() {
+
+        Window.alert("NEXT STEP ASKS FOR DATA");
         return credentials;
     }
 
@@ -248,9 +252,8 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                 if (!has) {
                     displayLabelError("Invalid username or password");
                     callback.onSuccess(false);
-                    Window.alert("FAIL");
                 } else {
-                    Window.alert("SCCESSS");
+                    Window.alert("SUBMITED GETTER STEP");
                     callback.onSuccess(true);
                 }
             }
@@ -306,6 +309,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      */
     protected AlfrescoCredentials getData()
     {
+        Window.alert("GETTING DATA");
         return credentials;
     }
 }
