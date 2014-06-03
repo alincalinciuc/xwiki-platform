@@ -126,7 +126,7 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
     {
         Window.alert("INIT LINK SELECTOR");
         entityLink = (EntityLink<EntityConfig>) data;
-        Window.alert("ENTLINK=" + entityLink.getData().getUrl());
+        Window.alert("ENTLINK=" + entityLink.toString());
         currentParent = entityLink.getDestination().getEntityReference();
         Window.alert("PARENT=" + currentParent.toString());
         up(new AsyncCallback<Object>()
@@ -253,6 +253,7 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
 
             public void onSuccess(List<AlfrescoEntity> children)
             {
+                Window.alert("SUCCESS-SELECTOR");
                 ListItem<AlfrescoEntity> selectedItem = fill(children, selectedChild);
                 callback.onSuccess(null);
                 childrenListBox.setSelectedItem(selectedItem);

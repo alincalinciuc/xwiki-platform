@@ -34,6 +34,8 @@ import org.xwiki.gwt.user.client.ui.wizard.AbstractInteractiveWizardStep;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListener;
 import org.xwiki.gwt.user.client.ui.wizard.NavigationListenerCollection;
 import org.xwiki.gwt.user.client.ui.wizard.SourcesNavigationEvents;
+import org.xwiki.gwt.wysiwyg.client.wiki.EntityConfig;
+import org.xwiki.gwt.wysiwyg.client.wiki.EntityLink;
 
 /**
  * Wizard step that selects an Alfresco entity.
@@ -74,7 +76,10 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      * The service used to access an Alfresco content management system.
      */
     private AlfrescoServiceAsync alfrescoService;
-
+    /**
+     * The object processed by this wizard step.
+     */
+    private EntityLink<EntityConfig> entityLink;
     /**
      * Navigation listeners to be notified by navigation events from this step. It generates navigation to the next step
      * when an item is double clicked in the list, or enter key is pressed on a selected item.
@@ -112,7 +117,8 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     @SuppressWarnings("unchecked")
     public void init(Object data, final AsyncCallback< ? > callback)
     {
-        Window.alert("INIT GETTER");
+        entityLink = (EntityLink<EntityConfig>) data;
+        Window.alert("INIT GETTER-DATA-" + entityLink.toString());
         //credentials = (AlfrescoCredentials) data;
         //userTextBox.setText(credentials.getUsername());
         //passwordTextBox.setText(credentials.getPassword());
@@ -205,7 +211,7 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     public Object getResult() {
 
         Window.alert("NEXT STEP ASKS FOR DATA");
-        return credentials;
+        return entityLink;
     }
 
     /**
