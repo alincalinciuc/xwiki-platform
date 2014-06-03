@@ -172,7 +172,6 @@ public class DefaultAlfrescoService implements AlfrescoService
     }
     @Override
     public Boolean doAuthenticate(String user, String password) {
-        logger.error("ANDREI:" + user + "-" + password);
         String tiket = ticketManager.getAuthenticationTicket(user, password);
         return (tiket != null);
     }

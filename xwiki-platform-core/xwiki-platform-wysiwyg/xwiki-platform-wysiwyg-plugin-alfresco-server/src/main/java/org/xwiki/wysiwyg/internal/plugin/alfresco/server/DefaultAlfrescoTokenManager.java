@@ -111,9 +111,12 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
                     AlfrescoTiket tiket = (AlfrescoTiket) session.createCriteria(AlfrescoTiket.class).add(
                             Restrictions.eq(userfield, usr)).uniqueResult();
                     if (tiket != null) {
-                        session.delete(tiket);
+                        tiket.setTiket(newTiket.getTiket());
+                        tiket.setUser(newTiket.getUser());
+                        session.update(tiket);
+                    } else {
+                        session.save(newTiket);
                     }
-                    session.save(newTiket);
                     return null;
                 }
             });
