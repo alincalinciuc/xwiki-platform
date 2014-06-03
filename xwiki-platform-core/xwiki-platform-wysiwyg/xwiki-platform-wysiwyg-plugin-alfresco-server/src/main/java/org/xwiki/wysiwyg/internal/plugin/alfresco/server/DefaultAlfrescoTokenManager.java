@@ -114,7 +114,6 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
                         session.delete(tiket);
                     }
                     session.save(newTiket);
-                    logger.error("ANDREI:SAVED-" + newTiket.getTiket());
                     return null;
                 }
             });
@@ -199,7 +198,6 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
             this.setTicket(myTicket);
             return myTicket;
         } catch (Exception e) {
-            //e.printStackTrace();
             return null;
         }
     }

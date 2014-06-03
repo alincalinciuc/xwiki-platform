@@ -21,7 +21,6 @@ package org.xwiki.gwt.wysiwyg.client.plugin.alfresco;
 
 import java.util.List;
 
-import com.google.gwt.user.client.Window;
 import org.xwiki.gwt.user.client.FocusCommand;
 import org.xwiki.gwt.user.client.ui.ListBox;
 import org.xwiki.gwt.user.client.ui.ListItem;
@@ -99,8 +98,7 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
         super(new VerticalResizePanel());
 
         this.alfrescoService = alfrescoService;
-        Window.alert("NEW LINK SELECTOR");
-        Window.alert("SLF SERV=" + this.alfrescoService.toString());
+
         FlowPanel pathContainer = new FlowPanel();
         pathContainer.setStyleName("xPath");
         pathContainer.add(new Label(AlfrescoConstants.INSTANCE.pathLabel()));
@@ -124,11 +122,8 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
     @SuppressWarnings("unchecked")
     public void init(Object data, final AsyncCallback< ? > callback)
     {
-        Window.alert("INIT LINK SELECTOR");
         entityLink = (EntityLink<EntityConfig>) data;
-        Window.alert("ENTLINK=" + entityLink.toString());
         currentParent = entityLink.getDestination().getEntityReference();
-        Window.alert("PARENT=" + currentParent.toString());
         up(new AsyncCallback<Object>()
         {
             public void onFailure(Throwable caught)
@@ -138,7 +133,6 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
 
             public void onSuccess(Object result)
             {
-                Window.alert("SUCCESS INIT LINK SELECTOR");
                 callback.onSuccess(null);
                 Scheduler.get().scheduleDeferred(new FocusCommand(childrenListBox));
             }
@@ -253,7 +247,6 @@ public class AlfrescoEntitySelectorWizardStep extends AbstractInteractiveWizardS
 
             public void onSuccess(List<AlfrescoEntity> children)
             {
-                Window.alert("SUCCESS-SELECTOR");
                 ListItem<AlfrescoEntity> selectedItem = fill(children, selectedChild);
                 callback.onSuccess(null);
                 childrenListBox.setSelectedItem(selectedItem);

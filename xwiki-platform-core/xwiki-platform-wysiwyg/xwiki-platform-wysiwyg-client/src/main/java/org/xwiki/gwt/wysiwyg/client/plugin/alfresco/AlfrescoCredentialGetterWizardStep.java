@@ -23,7 +23,6 @@ import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
@@ -94,8 +93,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     public AlfrescoCredentialGetterWizardStep(AlfrescoServiceAsync alfrescoService)
     {
         this.alfrescoService = alfrescoService;
-        Window.alert("NEW STEP GETTER");
-        Window.alert("AlfService=" + this.alfrescoService.toString());
         Label userLabel = new Label("Alfresco Username");
         Label passwordLabel = new Label("Alfresco Password");
         display().addStyleName(DEFAULT_STYLE_NAME);
@@ -118,7 +115,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
     public void init(Object data, final AsyncCallback< ? > callback)
     {
         entityLink = (EntityLink<EntityConfig>) data;
-        Window.alert("INIT GETTER-DATA-" + entityLink.toString());
         //credentials = (AlfrescoCredentials) data;
         //userTextBox.setText(credentials.getUsername());
         //passwordTextBox.setText(credentials.getPassword());
@@ -209,8 +205,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
 
     @Override
     public Object getResult() {
-
-        Window.alert("NEXT STEP ASKS FOR DATA");
         return entityLink;
     }
 
@@ -259,7 +253,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
                     displayLabelError("Invalid username or password");
                     callback.onSuccess(false);
                 } else {
-                    Window.alert("SUBMITED GETTER STEP");
                     callback.onSuccess(true);
                 }
             }
@@ -315,7 +308,6 @@ public class AlfrescoCredentialGetterWizardStep extends AbstractInteractiveWizar
      */
     protected AlfrescoCredentials getData()
     {
-        Window.alert("GETTING DATA");
         return credentials;
     }
 }

@@ -120,11 +120,9 @@ public class TicketAuthenticator implements Authenticator
         String ticket = null;
         //get ticket from DB
         AlfrescoTiket dbTiket = ticketManager.getTicket();
-        logger.error("ANDREI:TRY-GET");
         //if there is a ticket for current user,use it
         if (dbTiket != null) {
             ticket = dbTiket.getTiket();
-            logger.error("ANDREI:GET-" + ticket);
         }
         /*if (ticket != null) {
             if (!ticketManager.validateAuthenticationTicket(ticket)) {
