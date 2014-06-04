@@ -129,8 +129,18 @@ public class NoAuthSimpleHttpClient implements SimpleHttpClient
     protected HttpResponse sendRequestGetResponse(HttpRequestBase request) throws IOException
     {
         HttpResponse response = getHttpClient().execute(request);
-        if (response.getEntity() != null) {
-            return  response;
+        InputStream contentStream = null;
+        try {
+            contentStream = response.getEntity().getContent();
+            if (response.getEntity() != null) {
+                return  response;
+            }
+        } finally {
+            try {
+                contentStream.close();
+            } catch (IOException e) {
+                // Ignore.
+            }
         }
         return null;
     }
