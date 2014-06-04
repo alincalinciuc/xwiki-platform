@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map.Entry;
 
+import org.apache.http.HttpResponse;
 import org.xwiki.component.annotation.ComponentRole;
 
 /**
@@ -75,4 +76,14 @@ public interface SimpleHttpClient
      * @throws IOException if this method fails to send the request or to read the response
      */
     <T> T doPost(String url, String content, String contentType, ResponseHandler<T> handler) throws IOException;
+    /**
+     * Executes a GET HTTP request on the specified URL with the specified query string parameters.
+     *
+     * @param url the target of the GET request
+     * @param queryStringParameters the list of query string parameters
+     * @return the object read from the response content
+     * @throws IOException if this method fails to send the request or to read the response
+     */
+    HttpResponse doGetResponse(String url, List<Entry<String, String>> queryStringParameters)
+        throws IOException;
 }

@@ -24,12 +24,14 @@ import javax.inject.Named;
 import javax.inject.Singleton;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 import org.slf4j.Logger;
-import org.w3c.dom.NodeList;
+//import org.w3c.dom.NodeList;
 import org.xwiki.component.annotation.Component;
 
 import com.xpn.xwiki.XWikiContext;
@@ -166,21 +168,15 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
             List<Map.Entry<String, String>> parameters =
                     Collections.<Map.Entry<String, String>> singletonList(
                             new AbstractMap.SimpleEntry<String, String>(AUTH_TICKET_PARAM, ticket));
-            String myTicket = httpClient.doGet(validateURL, parameters, new SimpleHttpClient.ResponseHandler<String>()
-            {
-                public String read(InputStream content)
-                {
-                    NodeList ticket1 = responseParser.parseXML(content).getElementsByTagName("ticket");
-                    if (ticket1.getLength() > 0) {
-                        return TRUE_PARAM;
-                    }
-                    return "false";
-                }
-            });
-            return myTicket.equals(TRUE_PARAM);
+            HttpResponse response = httpClient.doGetResponse(validateURL, parameters);
+            if (response.getStatusLine() != null) {
+                return (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK);
+            }
         } catch (Exception e) {
-            throw new RuntimeException("Failed to validate the authentication ticket.", e);
+            //throw new RuntimeException("Failed to validate the authentication ticket.", e);
+            return false;
         }
+        return false;
     }
     @Override
     public String getAuthenticationTicket(String user, String password)

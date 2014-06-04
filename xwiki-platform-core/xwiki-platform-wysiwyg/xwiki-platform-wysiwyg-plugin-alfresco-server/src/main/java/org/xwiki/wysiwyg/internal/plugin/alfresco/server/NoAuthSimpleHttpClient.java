@@ -56,6 +56,7 @@ import org.xwiki.wysiwyg.plugin.alfresco.server.SimpleHttpClient;
 @Named("noauth")
 public class NoAuthSimpleHttpClient implements SimpleHttpClient
 {
+    private static final String UTF = "UTF-8";
     /**
      * The HTTP client used to execute the requests.
      */
@@ -69,7 +70,17 @@ public class NoAuthSimpleHttpClient implements SimpleHttpClient
         for (Entry<String, String> entry : queryStringParameters) {
             parameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
         }
-        return sendRequest(new HttpGet(url + '?' + URLEncodedUtils.format(parameters, "UTF-8")), handler);
+        return sendRequest(new HttpGet(url + '?' + URLEncodedUtils.format(parameters, UTF)), handler);
+    }
+    @Override
+    public HttpResponse doGetResponse(String url, List<Entry<String, String>> queryStringParameters)
+        throws IOException
+    {
+        List<NameValuePair> parameters = new ArrayList<NameValuePair>();
+        for (Entry<String, String> entry : queryStringParameters) {
+            parameters.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
+        }
+        return sendRequestGetResponse(new HttpGet(url + '?' + URLEncodedUtils.format(parameters, UTF)));
     }
 
     @Override
@@ -105,6 +116,21 @@ public class NoAuthSimpleHttpClient implements SimpleHttpClient
                     // Ignore.
                 }
             }
+        }
+        return null;
+    }
+    /**
+     * Sends the given HTTP request.
+     *
+     * @param request the HTTP request to be sent
+     * @return the object read from the response content
+     * @throws IOException if this method fails to send the request or to read the response
+     */
+    protected HttpResponse sendRequestGetResponse(HttpRequestBase request) throws IOException
+    {
+        HttpResponse response = getHttpClient().execute(request);
+        if (response.getEntity() != null) {
+            return  response;
         }
         return null;
     }
