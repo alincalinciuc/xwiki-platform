@@ -170,10 +170,11 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
                             new AbstractMap.SimpleEntry<String, String>(AUTH_TICKET_PARAM, ticket));
             HttpResponse response = httpClient.doGetResponse(validateURL, parameters);
             if (response.getStatusLine() != null) {
+                logger.error("ANDREI:" + response.getStatusLine().getStatusCode());
                 return (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK);
             }
         } catch (Exception e) {
-            //throw new RuntimeException("Failed to validate the authentication ticket.", e);
+            e.printStackTrace();
             return false;
         }
         return false;
