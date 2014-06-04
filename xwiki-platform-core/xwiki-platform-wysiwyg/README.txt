@@ -12,10 +12,6 @@ xwiki-platform-wysiwyg-plugin-alfresco-server-x.y-SNAPSHOT.jar (new)
 
 3. Enable "alfresco" WYSIWYG editor plugin from the administration section (don't forget to save the administration section!).
 
-4. Add Alfresco menu entries. For this you have to edit XWiki.WysiwygEditorConfig page in object mode and set the value of the menu property to:
-
-[{"feature": "link", "subMenu":["linkEdit", "linkRemove", "linkWikiPage", "linkAttachment", "|", "linkWebPage", "linkEmail", "alfrescoLink"]}, {"feature":"image", "subMenu":["imageInsertAttached", "imageInsertURL", "imageEdit", "alfrescoImage", "imageRemove"]}, {"feature":"table", "subMenu":["inserttable", "insertcolbefore", "insertcolafter", "deletecol", "|", "insertrowbefore", "insertrowafter", "deleterow", "|", "deletetable"]}, {"feature":"macro", "subMenu":["macroInsert", "macroEdit", "|", "macroRefresh", "|", "macroCollapse", "macroExpand"]}, {"feature":"import", "subMenu":["importOffice"]}]
-
 5. Edit xwiki.properties and add the following configuration properties:
 
 ## Required.
