@@ -164,7 +164,6 @@ public class DefaultAlfrescoService implements AlfrescoService
             ticket = dbTiket.getTiket();
         }
         if (ticket != null) {
-            logger.error("ANDREI:VALIDEZ" + ticket);
             if (ticketManager.validateAuthenticationTicket(ticket)) {
                 return true;
             }
