@@ -175,8 +175,10 @@ public class DefaultAlfrescoTokenManager implements AlfrescoTokenManager
             }
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error("ANDREI:Exception");
             return false;
         }
+        logger.error("ANDREI:FALSE VALID");
         return false;
     }
     @Override
